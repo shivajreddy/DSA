@@ -12,7 +12,7 @@ import org.junit.Assert;
 
 public class Problem347 {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Problem347Solution s = new Problem347Solution();
         Assert.assertEquals(
                 Arrays.toString(s.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2)),
                 Arrays.toString(new int[]{1, 2})
@@ -24,12 +24,7 @@ public class Problem347 {
     }
 }
 
-class Solution {
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        s.topKFrequent(new int[]{1, 1, 1, 2, 2, 3, 5, 5, 5, 5}, 2);
-        s.topKFrequent(new int[]{1, 2}, 2);
-    }
+class Problem347Solution {
 
     public int[] topKFrequent(int[] nums, int k) {
 
