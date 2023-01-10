@@ -29,6 +29,7 @@ class Problem19Solution {
                 } else {
                     curr.next = null;
                 }
+                return dummyHead.next;
             }
             i++;
             curr = curr.next;
