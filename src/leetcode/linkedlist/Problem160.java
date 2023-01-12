@@ -5,8 +5,8 @@ public class Problem160 {
     public static void main(String[] args) {
         Problem160Solution solution = new Problem160Solution();
 
-        ListNode head1 = CreateListNode.usingArray(new int[]{4, 1, 8, 4, 5});
-        ListNode head2 = CreateListNode.usingArray(new int[]{5, 6, 1, 8, 4, 5});
+        ListNode head1 = LinkedList.usingArray(new int[]{4, 1, 8, 4, 5});
+        ListNode head2 = LinkedList.usingArray(new int[]{5, 6, 1, 8, 4, 5});
         // 3rd item of list2, 2nd item of list1 is the common node
         head2.next.next = head1.next;
 
