@@ -17,7 +17,5 @@ class Problem143Solution {
 
         ListNode reverseHead = head;
 
-
-
     }
 }

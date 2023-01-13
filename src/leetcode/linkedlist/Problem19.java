@@ -5,6 +5,7 @@ public class Problem19 {
 
 class Problem19Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) return null;
 
         int size = 0;
         ListNode curr = head;
