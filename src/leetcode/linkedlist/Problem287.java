@@ -9,7 +9,6 @@ public class Problem287 {
 class Problem287Solution {
     public int findDuplicate(int[] nums) {
 
-        // test
 
     }
 }
