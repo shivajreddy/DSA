@@ -7,8 +7,8 @@ public class Problem287 {
 }
 
 class Problem287Solution {
-    public int findDuplicate(int[] nums) {
-
-
-    }
+    //public int findDuplicate(int[] nums) {
+    //
+    //}
 }
+
