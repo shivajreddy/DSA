@@ -6,12 +6,18 @@ import java.util.Arrays;
 public class SelectionSort {
 	public static void main(String[] args) {
 
-		int[] arr = new int[]{-20, -10, 30, 0, -1, 4};
+		//int[] arr = new int[]{-20, -10, 30, 0, -1, 4};
+		int[] arr = new int[]{4,0,18,24,16,20,4,18,19,8,14,13};
 
 		selectionSorting(arr);
 
 		System.out.println(Arrays.toString(arr));
 
+
+		for (int num : arr){
+			char c = (char) (num + 65);
+			System.out.print(c + " ");
+		}
 	}
 
 	/**
