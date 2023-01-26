@@ -14,6 +14,12 @@ public class SelectionSort {
 
 	}
 
+	/**
+	 * Selection Sorting
+	 * Time Complexity -> O(n^2)
+	 * Space Complexity -> O(1)
+	 */
+
 	private static void selectionSorting(int[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			int curr = arr[i];
