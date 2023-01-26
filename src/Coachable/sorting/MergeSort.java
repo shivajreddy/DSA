@@ -1,4 +1,4 @@
-package sorting2;
+package Coachable.sorting;
 
 import java.util.Arrays;
 
