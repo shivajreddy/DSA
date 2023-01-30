@@ -10,43 +10,59 @@ public class QuickSort {
 
 		int[] arr = new int[]{50, 70, 60, 90, 40, 80, 10, 20, 30, 9999};
 		System.out.println(Arrays.toString(arr));
-		partition(arr, 0, arr.length - 1);
-		System.out.println(Arrays.toString(arr));
 
+
+		QuickSorting(arr, 0, arr.length - 1);
+		System.out.println(Arrays.toString(arr));
 	}
 
+	private static void QuickSorting(int[] arr, int low, int high) {
 
-	// partitioning technique
-	private static void partition(int[] arr, int left, int right) {
+		// recursively call quick sorting
+		if (low < high) {
 
-		int pivot = arr[left];
+			// get the partition using the entire array
+			int partitionIdx = partition(arr, low, high);
 
-		int i = left;
-		int j = right;
+			// recursive call on the left half
+			QuickSorting(arr, low, partitionIdx);
 
+			// recursive call on the right half
+			QuickSorting(arr, partitionIdx + 1, high);
+		}
+	}
 
-		//while (i < j){
+	private static int partition(int[] arr, int l, int h) {
+
+		int pivot = arr[l];
+
+		int i = l;
+		int j = h;
+
 		do {
+			// find item > pivot, using i
 			do i++;
 			while (arr[i] <= pivot);
 
+			// find item <= pivot, using j
 			do j--;
 			while (arr[j] > pivot);
 
-			// swap elements at i, j. Only if i,j didn't cross
+			// swap both items, only if pointers didn't cross
 			if (i < j) {
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				int temp = arr[j];
+				arr[j] = arr[i];
+				arr[i] = temp;
 			}
+		} while (i < j);
 
-		}
-		while (i < j);
-
-		// swap pivot with element at j
-		arr[left] = arr[j];
+		// bring the pivot to j
+		arr[l] = arr[j];
 		arr[j] = pivot;
+
+		return j;
 	}
+
 
 }
 
