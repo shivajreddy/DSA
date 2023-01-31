@@ -1,10 +1,9 @@
 package Coachable.sorting;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 
-public class Problem {
+public class ProblemQuickSort {
 	static int count = 0;
 	static String[][] output = {
 			{"AMTR", "APPE", "DINS", "EASE", "HELP", "HISI", "IDEA", "IFYO", "INGA", "INGT", "ITHM", "LGOR", "OHPL", "READ", "SORT", "UARE", "EVIL", "HELP", "MALL", "OVER", "RATS", "RATS", "SEND", "SWAR", "AREW", "ETYP", "HELP", "INGM", "LACE", "RATS", "THEP", "WATC"},
