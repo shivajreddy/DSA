@@ -10,17 +10,17 @@ public class QuickSort {
 
 		//int[] arr = new int[]{50, 70, 60, 90, 40, 80, 10, 20, 30, 9999};
 		//int[] arr = new int[]{69, 65, 83, 89, 81, 85, 69, 83, 84, 73, 79, 78, 9999};
-		int[] arr = new int[]{69, 65, 83, 89, 81, 85, 69, 83, 84, 73, 79, 78};
+		//int[] arr = new int[]{69, 65, 83, 89, 81, 85, 69, 83, 84, 73, 79, 78};
+		int[] arr = new int[]{60, 40, 80, 90, 10};
 		System.out.println(Arrays.toString(arr));
 
 
-		QuickSorting3Way(arr, arr.length);
-		System.out.println(Arrays.toString(arr));
-
-		//QuickSorting(arr, 0, arr.length - 1);
+		//QuickSorting3Way(arr, arr.length);
 		//System.out.println(Arrays.toString(arr));
-	}
 
+		QuickSorting(arr, 0, arr.length - 1);
+		System.out.println(Arrays.toString(arr));
+	}
 
 
 	// quick sorts only 3 distant elements
@@ -46,32 +46,54 @@ public class QuickSort {
 		}
 	}
 
+
+	//
 	private static void QuickSorting(int[] arr, int low, int high) {
 
-		// recursively call quick sorting
-		if (low < high) {
+		if (low >= high) return;
 
-			// get the partition using the entire array
-			int partitionIdx = partition(arr, low, high);
+		int partitionIdx = partition(arr, low, high);
+		QuickSorting(arr, low, partitionIdx - 1);
+		QuickSorting(arr, partitionIdx + 1, high);
+	}
 
+	private static int partition(int[] arr, int low, int high) {
+		int pivot = arr[low];
 
-			/**
-			 * when using the while loop partition, exclude the right most element
-			 * since that is the pivot, and it's used as right most marker
-			 * recursive call on the left half
-			 */
-			//QuickSorting(arr, low, partitionIdx);
+		int i = low;
+		int j = high + 1;
 
-			// recursive all on the left half
-			QuickSorting(arr, low, partitionIdx - 1);
+		while (true) {
 
-			// recursive call on the right half
-			QuickSorting(arr, partitionIdx + 1, high);
+			while (arr[++i] < pivot)
+				if (i == high) break;
+
+			while (arr[--j] > pivot)
+				if (j == low) break;
+
+			if (i >= j) break;
+
+			exchange(arr, i, j);
 		}
+		exchange(arr, low, j);
+		return j;
+	}
+
+	private static void exchange(int[] arr, int i, int j) {
+		int temp = arr[j];
+		arr[j] = arr[i];
+		arr[i] = temp;
+	}
+
+	//private static boolean isLess(Comparable<Object> v, Comparable<Object> w) {
+	private static boolean isLess(int v, int w) {
+		if (v == w) return false;
+		//return v.compareTo(w) < 0;
+		return v < w;
 	}
 
 
-	private static int partition(int[] arr, int low, int high) {
+	private static int partition2(int[] arr, int low, int high) {
 		// assume last element is the pivot
 		int pivot = arr[high];
 
