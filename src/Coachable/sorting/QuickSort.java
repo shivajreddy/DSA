@@ -14,8 +14,36 @@ public class QuickSort {
 		System.out.println(Arrays.toString(arr));
 
 
-		QuickSorting(arr, 0, arr.length - 1);
+		QuickSorting3Way(arr, arr.length);
 		System.out.println(Arrays.toString(arr));
+
+		//QuickSorting(arr, 0, arr.length - 1);
+		//System.out.println(Arrays.toString(arr));
+	}
+
+
+
+	// quick sorts only 3 distant elements
+	private static void QuickSorting3Way(int[] arr, int size) {
+
+		int low = 0;
+		int high = size - 1;
+		int mid = 0;
+
+		while (mid <= high) {
+			if (arr[mid] == 0) {
+				int temp = arr[low];
+				arr[low] = arr[mid];
+				arr[mid] = temp;
+			} else if (arr[mid] == 1)
+				mid++;
+			else {
+				int temp = arr[high];
+				arr[high] = arr[mid];
+				arr[mid] = temp;
+				high--;
+			}
+		}
 	}
 
 	private static void QuickSorting(int[] arr, int low, int high) {
@@ -26,7 +54,12 @@ public class QuickSort {
 			// get the partition using the entire array
 			int partitionIdx = partition(arr, low, high);
 
-			// recursive call on the left half
+
+			/**
+			 * when using the while loop partition, exclude the right most element
+			 * since that is the pivot, and it's used as right most marker
+			 * recursive call on the left half
+			 */
 			//QuickSorting(arr, low, partitionIdx);
 
 			// recursive all on the left half
@@ -98,7 +131,6 @@ public class QuickSort {
 
 		return j;
 	}
-
 
 }
 
