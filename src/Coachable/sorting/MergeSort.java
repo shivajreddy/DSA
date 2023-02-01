@@ -1,58 +1,49 @@
 package Coachable.sorting;
 
-import java.util.Arrays;
-
 public class MergeSort {
 
-    public static void main(String[] args) {
+	private MergeSort() {
+	}
 
-        int[] arr = new int[]{9, 3, 5, 3, 7, 5, 6, 4, 8, 2};
+	public static void sort(int[] arr) {
+		// create the auxiliary array
+		int[] auxiliaryArr = new int[arr.length];
+		// call the main sort method, using this auxiliary array
+		sort(arr, auxiliaryArr, 0, arr.length - 1);
+	}
 
-        System.out.println("arr=" + Arrays.toString(arr));
-        mergeSort(arr);
-        System.out.println("arr=" + Arrays.toString(arr));
-    }
+	private static void sort(int[] arr, int[] aux, int low, int high) {
 
-    private static void mergeSort(int[] arr) {
-        // base condition
-        if (arr.length < 2) return;
+		if (high <= low) return;
 
-        // mid index
-        int mid = arr.length / 2;
+		// split the array into sub-arrays, sort them
+		int mid = low + ((high - low) / 2);
 
-        int[] arr_left = new int[mid];
-        int[] arr_right = new int[arr.length - mid];
+		// recursively sort the left half and right half
+		sort(arr, aux, low, mid);
+		sort(arr, aux, mid + 1, high);
 
-        // copy elements to arr_left & arr_right
-        System.arraycopy(arr, 0, arr_left, 0, mid);
-        System.arraycopy(arr, mid, arr_right, 0, arr.length - mid);
+		// merge the sorted arrays, back to main array
+		merge(arr, aux, low, mid, high);
+	}
 
-        // recursive call both halves
-        mergeSort(arr_left);
-        mergeSort(arr_right);
+	private static void merge(int[] originalArr, int[] auxiliaryArr, int low, int mid, int high) {
 
-        // merge
-        merge(arr_left, arr_right, arr);
-    }
+		// copy to aux[]
+		if (high - low + 1 >= 0) System.arraycopy(originalArr, low, auxiliaryArr, low, high + 1 - low);
 
-    // Merge function
-    private static void merge(int[] arr_a, int[] arr_b, int[] arr_result) {
+		int i = low, j = mid + 1;
+		for (int k = low; k <= high; k++) {
 
-        int m = arr_a.length;
-        int n = arr_b.length;
+			// 'i' went out of bounds, meaning, still items left in 2nd half
+			if (i > mid) originalArr[k] = auxiliaryArr[j++];
 
-        // pointers for first_array, second_array, result_array
-        int i = 0, j = 0, k = 0;
+				// j went out of bounds, meaning, still items left in 1st half
+			else if (j > high) originalArr[k] = auxiliaryArr[i++];
 
-        while (i < m && j < n) {
-            if (arr_a[i] < arr_b[j]) {
-                arr_result[k++] = arr_a[i++];
-            } else {
-                arr_result[k++] = arr_b[j++];
-            }
-        }
-        // copy remaining items in each array, if any.
-        for (; i < m; i++) arr_result[k++] = arr_a[i];
-        for (; j < n; j++) arr_result[k++] = arr_b[j];
-    }
+				//add the smallest of both arrays
+			else if (auxiliaryArr[i] < auxiliaryArr[j]) originalArr[k] = auxiliaryArr[i++];
+			else originalArr[k] = auxiliaryArr[j++];
+		}
+	}
 }
