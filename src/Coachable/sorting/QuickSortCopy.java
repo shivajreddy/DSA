@@ -1,7 +1,8 @@
 package Coachable.sorting;
 
-public class QuickSort {
-	private QuickSort() {
+public class QuickSortCopy {
+
+	private QuickSortCopy() {
 	}
 
 	public static void sort(Comparable[] arr) {
