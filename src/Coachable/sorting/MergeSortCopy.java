@@ -1,8 +1,11 @@
 package Coachable.sorting;
 
-public class MergeSort {
+import java.util.Arrays;
 
-	private MergeSort() {
+
+public class MergeSortCopy {
+
+	private MergeSortCopy() {
 	}
 
 	private static Comparable<Object>[] aux;
@@ -27,7 +30,10 @@ public class MergeSort {
 		sort(arr, mid + 1, high);
 
 		merge(arr, low, mid, high);
+		System.out.println("Step: " + (++count) + ". after merging: " + Arrays.toString(arr));
 	}
+
+	private static int count = 0;
 
 	private static void merge(Comparable<Object>[] arr, int low, int mid, int high) {
 
