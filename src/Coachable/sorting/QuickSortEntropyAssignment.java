@@ -3,8 +3,8 @@ package Coachable.sorting;
 import java.util.Arrays;
 
 
-public class QuickSortEntropyCopy {
-	private QuickSortEntropyCopy() {
+public class QuickSortEntropyAssignment {
+	private QuickSortEntropyAssignment() {
 	}
 
 	private static int count = 0;

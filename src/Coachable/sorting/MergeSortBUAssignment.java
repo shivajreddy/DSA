@@ -4,9 +4,9 @@ package Coachable.sorting;
 import java.util.Arrays;
 
 
-public class MergeSortBUCopy {
+public class MergeSortBUAssignment {
 
-	private MergeSortBUCopy() {
+	private MergeSortBUAssignment() {
 	}
 
 	private static Comparable[] aux;

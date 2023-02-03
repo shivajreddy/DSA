@@ -3,19 +3,7 @@ package Coachable.sorting;
 import java.util.Arrays;
 
 
-public class InsertionSort {
-
-
-	public static void main(String[] args) {
-
-		int[] arr = new int[]{10, 20, 30, 0, -1, 4};
-
-		insertionSort(arr);
-
-		System.out.println(Arrays.toString(arr)); // [-1, 0, 4, 10, 20, 30]
-
-	}
-
+public class InsertionSortIntegers {
 
 	/**
 	 * InsertionSort Algorithm
@@ -23,7 +11,7 @@ public class InsertionSort {
 	 * Space Complexity -> O(1)
 	 */
 
-	private static void insertionSort(int[] arr) {
+	public static void sort(int[] arr) {
 
 		for (int i = 1; i < arr.length; i++) {
 

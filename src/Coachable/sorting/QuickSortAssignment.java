@@ -3,9 +3,9 @@ package Coachable.sorting;
 import java.util.Arrays;
 
 
-public class QuickSortCopy {
+public class QuickSortAssignment {
 
-	private QuickSortCopy() {
+	private QuickSortAssignment() {
 	}
 
 	public static void sort(Comparable[] arr) {
