@@ -21,6 +21,9 @@ public class Testing {
 		// Using Quick Sort : After setting the 1st pivot: HELP, which goes to idx:9, matches C
 		//QuickSortCopy.sort(arr);
 
+		// Using Quick Sort Entropy: i:10 pivot:HELP, low:0, high:31,
+		//QuickSortEntropyCopy.sort(arr);
+
 		// Insertion Sort
 		//InsertionSortCopy
 
