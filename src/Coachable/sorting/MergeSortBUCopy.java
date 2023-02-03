@@ -4,7 +4,10 @@ package Coachable.sorting;
 import java.util.Arrays;
 
 
-public class MergeSortBU {
+public class MergeSortBUCopy {
+
+	private MergeSortBUCopy() {
+	}
 
 	private static Comparable[] aux;
 
@@ -17,8 +20,10 @@ public class MergeSortBU {
 
 		for (int sz = 1; sz < N; sz = sz + sz) {
 
-			for (int low = 0; low < N - sz; low += sz + sz)
+			for (int low = 0; low < N - sz; low += sz + sz) {
 				merge(arr, low, low + sz - 1, Math.min(low + sz + sz - 1, N - 1));
+				System.out.println("Step: " + (++count) + ". after merging: " + Arrays.toString(arr));
+			}
 
 		}
 

@@ -1,5 +1,8 @@
 package Coachable.sorting;
 
+import java.util.Arrays;
+
+
 public class QuickSortCopy {
 
 	private QuickSortCopy() {
@@ -9,11 +12,15 @@ public class QuickSortCopy {
 		sort(arr, 0, arr.length - 1);
 	}
 
+	private static int count = 0;
+
 	private static void sort(Comparable[] arr, int low, int high) {
 		// base condition
 		if (low >= high) return;
 
 		int partitionIdx = partition(arr, low, high);
+		System.out.println("PASS:" + ++count + ", pivotIdx: " + partitionIdx + ", pivot: " + arr[partitionIdx]);
+		System.out.println("arr= " + Arrays.toString(arr));
 		sort(arr, low, partitionIdx - 1);
 		sort(arr, partitionIdx + 1, high);
 	}

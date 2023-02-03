@@ -15,8 +15,15 @@ public class Testing {
 		// Using Merge Sort : 29th merge matches B
 		//MergeSortCopy.sort(arr);
 
-		// Using Quick Sort
-		QuickSortCopy.sort(arr);
+		// Using MergeSortBU
+		MergeSortBUCopy.sort(arr);
+
+		// Using Quick Sort : After setting the 1st pivot: HELP, which goes to idx:9
+		//QuickSortCopy.sort(arr);
+
+		// Insertion Sort
+		//InsertionSortCopy
+
 
 		System.out.println(Arrays.toString(arr));
 	}
