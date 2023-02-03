@@ -24,9 +24,7 @@ public class MergeSortBUCopy {
 				merge(arr, low, low + sz - 1, Math.min(low + sz + sz - 1, N - 1));
 				System.out.println("Step: " + (++count) + ". after merging: " + Arrays.toString(arr));
 			}
-
 		}
-
 	}
 
 	private static void merge(Comparable[] arr, int low, int mid, int high) {

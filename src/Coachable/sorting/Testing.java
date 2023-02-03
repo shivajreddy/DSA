@@ -15,10 +15,10 @@ public class Testing {
 		// Using Merge Sort : 29th merge matches B
 		//MergeSortCopy.sort(arr);
 
-		// Using MergeSortBU
-		MergeSortBUCopy.sort(arr);
+		// Using MergeSortBU : 24th step after merge, matches D
+		//MergeSortBUCopy.sort(arr);
 
-		// Using Quick Sort : After setting the 1st pivot: HELP, which goes to idx:9
+		// Using Quick Sort : After setting the 1st pivot: HELP, which goes to idx:9, matches C
 		//QuickSortCopy.sort(arr);
 
 		// Insertion Sort
