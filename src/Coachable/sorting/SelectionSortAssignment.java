@@ -1,26 +1,26 @@
 package Coachable.sorting;
 
-
 import java.util.Arrays;
 
 
-public class InsertionSortAssignment {
-
-	private InsertionSortAssignment() {
+public class SelectionSortAssignment {
+	private SelectionSortAssignment() {
 	}
 
 	private static int count = 0;
 
 	public static void sort(Comparable[] arr) {
 
-		for (int i = 0; i < arr.length; i++)
+		for (int i = 0; i < arr.length; i++) {
 
-			for (int j = i; j > 0 && isLess(arr[j], arr[j - 1]); j--){
-				swap(arr, j, j - 1);
-				System.out.println("count: " + ++count);
-				System.out.println("arr: " + Arrays.toString(arr));
-			}
-
+			// track the smallest item
+			int min = i;
+			for (int j = i + 1; j < arr.length; j++)
+				if (isLess(arr[j], arr[min])) min = j;
+			swap(arr, i, min);
+			System.out.println("count: " + ++count);
+			System.out.println("arr: " + Arrays.toString(arr));
+		}
 
 	}
 
@@ -35,5 +35,5 @@ public class InsertionSortAssignment {
 		arr[j] = arr[i];
 		arr[i] = temp;
 	}
-
 }
+

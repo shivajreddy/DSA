@@ -18,7 +18,7 @@ public class InsertionSortIntegers {
 			int curr = arr[i];
 
 			int j = i - 1;
-			while (j > -1 && arr[j] > curr) {    //**NOT while ( arr[j] > curr && j > -1){
+			while (j >= 0 && arr[j] > curr) {    //**NOT while ( arr[j] > curr && j >= 0){
 				// move to right
 				arr[j + 1] = arr[j];
 				j -= 1;

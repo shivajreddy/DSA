@@ -1,26 +1,17 @@
 package Coachable.sorting;
 
 
-import java.util.Arrays;
+public class InsertionSort {
 
-
-public class InsertionSortAssignment {
-
-	private InsertionSortAssignment() {
+	private InsertionSort() {
 	}
-
-	private static int count = 0;
 
 	public static void sort(Comparable[] arr) {
 
 		for (int i = 0; i < arr.length; i++)
 
-			for (int j = i; j > 0 && isLess(arr[j], arr[j - 1]); j--){
+			for (int j = i; j > 0 && isLess(arr[j], arr[j - 1]); j--)
 				swap(arr, j, j - 1);
-				System.out.println("count: " + ++count);
-				System.out.println("arr: " + Arrays.toString(arr));
-			}
-
 
 	}
 
