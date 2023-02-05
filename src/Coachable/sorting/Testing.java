@@ -17,7 +17,7 @@ public class Testing {
 		// Selection Sort : step 12, after swapping, matches H
 		//SelectionSortIntegers.sort(arr);
 		//SelectionSort.sort(arr);
-		SelectionSortAssignment.sort(arr);
+		//SelectionSortAssignment.sort(arr);
 
 		// Insertion Sort : step 33, after swapping, matches F
 		//InsertionSortIntegers.sort(arr);
@@ -35,6 +35,11 @@ public class Testing {
 
 		// Using Quick Sort Entropy: i:10 pivot:HELP, low:0, high:31,
 		//QuickSortEntropyAssignment.sort(arr);
+
+
+		// Using Heap Sort
+		Heap.sort(arr);
+
 
 
 		System.out.println(Arrays.toString(arr));
