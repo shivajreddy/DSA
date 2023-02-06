@@ -1,9 +1,6 @@
 package leetcode.hashmap;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 
 public class Problem299 {
@@ -15,6 +12,40 @@ public class Problem299 {
 	}
 }
 
+class Solution {
+    public String getHint(String secret, String guess) {
+        HashMap<Character, Integer> h = new HashMap();
+        for (char s : secret.toCharArray()) {
+            h.put(s, h.getOrDefault(s, 0) + 1);
+        }
+
+        int bulls = 0, cows = 0;
+        int n = guess.length();
+        for (int idx = 0; idx < n; ++idx) {
+            char ch = guess.charAt(idx);
+            if (h.containsKey(ch)) {
+                // corresponding characters match
+                if (ch == secret.charAt(idx)) {
+                    // update the bulls
+                    bulls++;
+                    // update the cows
+                    // if all ch characters from secret
+                    // were used up
+                    if (h.get(ch) < 1) cows--;
+                // corresponding characters don't match
+                }
+                // update the cows
+                else  if (h.get(ch) > 0) cows++;
+                // ch character was used
+                h.put(ch, h.get(ch) - 1);
+            }
+        }
+		StringBuilder result = new StringBuilder().append(bulls).append("A").append(cows).append("B");
+		System.out.println(result.toString());
+		return result.toString();
+    }
+}
+
 
 /***************************************************************************
  Input: secret = "1807", guess = "7810"
@@ -24,7 +55,7 @@ Input: secret = "1123", guess = "0111"
 Output: "1A1B"
  ***************************************************************************/
 
-class Solution {
+class MyShitySolution {
 	public String getHint(String secret, String guess) {
 
 		int N = secret.length();
@@ -63,3 +94,4 @@ class Solution {
 		return result.toString();
 	}
 }
+
