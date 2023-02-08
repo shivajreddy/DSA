@@ -10,7 +10,7 @@ public class Problem543 {
 
 class Problem543Solution {
 	public int diameterOfBinaryTree(TreeNode root) {
-
 		return -1;
 	}
 }
+
