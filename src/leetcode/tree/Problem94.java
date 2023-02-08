@@ -36,6 +36,8 @@ class TreeNode {
 
 /****************************
  * Recursive solution
+ * Time -> O(n)
+ * Space -> O(1)
  ***************************/
 class Solution {
 	public List<Integer> inorderTraversal(TreeNode root) {
@@ -52,24 +54,31 @@ class Solution {
 	}
 }
 
+
 /****************************
  * Iterative Solution
+ * Time -> O(n)
+ * Space -> O(n)
  ***************************/
 class Solution2 {
 	public List<Integer> inorderTraversal(TreeNode root) {
-		List<Integer> res = new ArrayList<>();
-		if (root == null) return res;
 
+		List<Integer> result = new ArrayList<>();
+		if (root == null) return result;
 		Stack<TreeNode> stack = new Stack<>();
-		stack.add(root);
+
 		TreeNode curr = root;
-		while (!stack.isEmpty() && curr != null) {
-			res.add(curr.val);
-			curr = curr.left;
-			stack.push(curr.left);
-			curr = curr.right;
-			stack.push(curr.right);
+
+		while (!stack.isEmpty() || curr != null) {
+			if (curr != null) {
+				stack.push(curr);
+				curr = curr.left;
+			} else {
+				curr = stack.pop();
+				result.add(curr.val);
+				curr = curr.right;
+			}
 		}
-		return res;
+		return result;
 	}
 }
