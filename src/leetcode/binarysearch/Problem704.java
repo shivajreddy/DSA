@@ -31,10 +31,10 @@ class Solution {
             } else {
                 r = mid_index - 1;
             }
-
         }
 
         return -1;
 
     }
 }
+
