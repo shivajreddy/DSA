@@ -2,3 +2,8 @@
 out
 .DS_Store
 DSA.iml
+
+# all env files
+**/venv/**
+
+
