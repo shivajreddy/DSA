@@ -1,0 +1,12 @@
+{
+  "accentColor": "",
+  "cssTheme": "Catppuccin",
+  "textFontFamily": "Inter",
+  "theme": "obsidian",
+  "showViewHeader": false,
+  "nativeMenus": false,
+  "monospaceFontFamily": "JetBrains Mono",
+  "enabledCssSnippets": [
+    "styles"
+  ]
+}

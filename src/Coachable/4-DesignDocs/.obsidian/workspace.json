@@ -1,0 +1,146 @@
+{
+  "main": {
+    "id": "b6d0bd4394b78c37",
+    "type": "split",
+    "children": [
+      {
+        "id": "47a68ba3dd1238eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "54b32bee2f82d812",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ca7ac9fc36a9cf5c",
+    "type": "split",
+    "children": [
+      {
+        "id": "b34cf9a78949a6ed",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "81b18a46c6087e96",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a3e1e772009a0df0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "100c7286ff2e87bf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c38ae1003a7cfd19",
+    "type": "split",
+    "children": [
+      {
+        "id": "137a8ffa78c1ecee",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c286d700aed3c90",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2ab46353e3831865",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "8457a1500d14080a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": true,
+      "graph:Open graph view": true,
+      "daily-notes:Open today's daily note": true,
+      "templates:Insert template": true,
+      "command-palette:Open command palette": true,
+      "canvas:Create new canvas": true
+    }
+  },
+  "active": "54b32bee2f82d812",
+  "lastOpenFiles": [
+    "DD_7.md",
+    "DD_8.md",
+    "DD_8.rs~",
+    "DD_8.rs",
+    "DD_8.py~",
+    "DSA/DesignDocs/8-Island Perimeter.md",
+    "nexus/ToDo.md",
+    "DSA/Untitled.md",
+    "DSA/DesignDocs",
+    "DSA",
+    "Rust/Chapter 5.md",
+    "Rust/assets/t.png",
+    "Rust/assets",
+    "Rust/testing.canvas",
+    "Rust",
+    "Test Note huh.md",
+    "Test canvase.canvas",
+    "nexus"
+  ]
+}
