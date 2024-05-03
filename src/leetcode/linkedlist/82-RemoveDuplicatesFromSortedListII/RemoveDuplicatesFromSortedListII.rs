@@ -15,7 +15,10 @@ struct Solution {}
 
 impl Solution {
     pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        None
+        let dummy = Box::new(ListNode {
+            val: -1,
+            next: None,
+        });
     }
 }
 
