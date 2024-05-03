@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 
 class ListNode:
@@ -8,21 +8,14 @@ class ListNode:
 
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
-        prev, curr = head, head
-
-        while curr:
-
-            if prev.val == curr.val:
-                prev.next = None
-            else:
-                prev.next = curr
-                prev = curr
-
-            curr = curr.next
-
-        return head
+        pass
 
 
 s = Solution()
+
+head = ListNode(1, ListNode(1, ListNode(1, ListNode(2, ListNode(3, None)))))
+s.deleteDuplicates(head)
+
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(3, ListNode(3, ListNode(4, ListNode(4, ListNode(5, None))))))))
+s.deleteDuplicates(head)
 
