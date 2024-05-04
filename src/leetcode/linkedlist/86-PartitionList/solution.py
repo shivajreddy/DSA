@@ -56,7 +56,7 @@ class Solution:
                 # move pointers
                 small = small.next
                 curr = nxt
-            
+
             # found a node >= x
             else:
                 nxt = curr.next     # safe-keeping
@@ -68,7 +68,7 @@ class Solution:
                 # move pointers
                 big = big.next 
                 curr = nxt
-        
+
         # point big list to the end of small linked list
         small.next = d2.next
 
