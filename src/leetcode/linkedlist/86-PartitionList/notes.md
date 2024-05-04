@@ -2,7 +2,7 @@ Lessons Learnt:
 
 Test Cases:
   - Didn't add any new test cases, other than the given. So not having a clue about edge cases.
-  - TestCases should be:
+  - Test-Cases should be:
     1. What if all are < x    IN: x=3, 1->1
     2. What if all are >= x   IN: x=3, 4->5
     3. What if there are no nodes to partition.   IN: x=3, 1->2->1->5->4  OUT: 1->2->1->5->4
