@@ -60,7 +60,7 @@ class Solution:
             idx += 1
             S = curr
             curr = curr.next
-        
+
         def reverseList(node: ListNode):
             dummy = ListNode(-1, node)
             prev, curr = None, node
@@ -72,15 +72,12 @@ class Solution:
                 prev = curr
 
                 curr = nxt
-            
+
             return (prev, dummy.next)
-        
+
         s, e = reverseList(target_node)
 
         S.next = s
         e.next = E
 
         return dummy.next
-
-
-        
