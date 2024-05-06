@@ -1,7 +1,7 @@
 '''
 Shape of Node:
     key         -> This is important, because
-    val         ->
+    val         -> 
     next        -> Pointer to next node in list
     prev        -> Pointer to prev node in list
 
