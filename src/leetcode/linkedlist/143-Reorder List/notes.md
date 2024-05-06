@@ -10,6 +10,8 @@ Learnings:
        because when we pass the head of the right-half into the 
        reverse_list fn we are setting this nodes.next to None, since
        we initiate prev=None
+    - so thinking of breaking the list is mis-leading, think of it as
+      get the middle node
 
 
 Visialization of `slow`, `fast` pointers:
