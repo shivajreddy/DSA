@@ -90,3 +90,5 @@ class LRUCache:
         new_node = Node(key, value)
         self.cache.insert_front(new_node)
         self.mapper[key] = new_node
+
+
