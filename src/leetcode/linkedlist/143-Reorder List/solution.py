@@ -11,8 +11,10 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
+
 
         # split list in half
         def get_middle(node):
@@ -21,7 +23,7 @@ class Solution:
                 slow = slow.next
                 fast = fast.next.next
             return slow
-        
+
 
         # reverese list
         def reverse_list(node):
