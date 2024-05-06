@@ -30,7 +30,6 @@ class ListNode:
         self.next = next
 
 
-
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
 
