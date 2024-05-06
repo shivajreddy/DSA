@@ -8,6 +8,13 @@ Shape of Node:
 Shape of Mapper:
 { <key> : <pointer-to-node-in-Doubly_Linked_List> }
 
+Shape of Doubly Linked List:
+   (-) <=> (-)
+    h       t
+    
+    **Note**: we have dedicated `head` and `tail` poitners
+
+
 '''
 
 
