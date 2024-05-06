@@ -22,6 +22,7 @@ class Solution:
                 fast = fast.next.next
             return slow
         
+
         # reverese list
         def reverse_list(node):
             prev, curr = None, node
@@ -31,7 +32,8 @@ class Solution:
                 prev = curr
                 curr = nxt
             return prev
-        
+
+
         # merge lists
         def merge_lists(left, right):
             while right.next:
