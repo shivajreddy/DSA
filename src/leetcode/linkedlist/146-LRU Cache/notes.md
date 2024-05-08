@@ -1,4 +1,5 @@
-
+# 146 - LRU Cache
+[LeetCode](https://leetcode.com/problems/lru-cache/)
 
 Shape of Node:
     key         -> This is important, because
