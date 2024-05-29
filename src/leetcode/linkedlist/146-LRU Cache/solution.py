@@ -1,12 +1,24 @@
 '''
+Design LRU
 
-
+1. Create a Node type
+2. Create a DoubleLinkedList
+    Node1 <-> Node2 <-> Node3 -> None
+3. Design LRU Cache
+    A node can atmost have 1 node as its next
+    A node can atmost have 1 node as its prev
+    This ensures there is no branching or circular linked lists
 '''
 
+from typing import Dict
 
-class Node:
-
-    def __init__(self, key: int, val: int, next=None, prev=None):
+class Node: 
+    def __init__(self, 
+                key: int,
+                val: int,
+                next: 'Node | None' = None,
+                prev: 'Node | None' = None
+                ) -> None:
         self.key = key
         self.val = val
         self.next = next
@@ -14,41 +26,29 @@ class Node:
 
 
 class DoublyLinkedList:
-
     def __init__(self):
         self.size = 0
-        self.head, self.tail = Node(-1, -1), Node(-1, -1)
-        self.head.next, self.tail.prev = self.tail, self.head  # head <-> tail
+        self.head = Node(-1, -1)
+        self.tail = Node(-1, -1)
+        self.head.next, self.tail.prev = self.tail, self.head   # head <-> tail
 
-    def insert_front(self, new_node: Node):
-        first = self.head.next  # head <-> first ... <-> tail
-        self.head.next, new_node.prev = new_node, self.head  # head <-> new_node
-        new_node.next, first.prev = first, new_node  # head <-> new_node <-> first
-        self.size += 1  # increase the size by 1
+    def push(self, node: Node): # O(1)
+        head, nxt = self.head, self.head.next   # head <-> nxt <-> ... <-> tail
+        head.next, nxt.prev = node, node        # head  -> node <-  nxt     #type: ignore
+        node.prev, node.next = head, nxt        # head <-> node <-> nxt
+        self.size += 1
 
-    # Remove and return the last node of the linked list
-    def remove_last(self) -> Node:
-        # make sure list is not empty
-        if self.size == 0: return
-
-        # head <-> ....<-> target_prev <-> target <-> tail
-        target, target_prev = self.tail.prev, self.tail.prev.prev
-
-        target.prev, target.next = None, None  # target_prev -> target <- tail
-        target_prev.next, self.tail.prev = self.tail, target_prev  # target_prev <-> tail
-
-        self.size -= 1  # reduce the size by 1
-        return target
-
-    # only called when there is at-least 1 node
-    def remove_node(self, target: Node) -> Node:
-        # head <->.... <-> target <-> .... tail
-        target_prev, target_next = target.prev, target.next
-        target.prev, target.next = None, None  # target_prev -> target <- target_next
-        target_prev.next, target_next.prev = target_next, target_prev
-
+    def remove(self, node: Node) -> None: # O(1)
+        # head <-> ... <-> node <-> ... <-> tail
+        prev, nxt = node.prev, node.next        # prev <-> node <-> nxt
+        node.prev, node.next = None, None       # prev  -> node <-  nxt
+        prev.next, nxt.prev = nxt, prev         # prev <-> nxt   |  node    #type: ignore
         self.size -= 1
-        return target
+
+    def pop(self) -> Node: # O(1)
+        node = self.tail.prev                   # head <-> ... <-> node <-> tail
+        self.remove(node)       # type: ignore
+        return node             # type: ignore
 
 
 class LRUCache:
@@ -56,32 +56,31 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.cache = DoublyLinkedList()
-        self.mapper = {}
+        self.mapper: Dict[int, int] = {}
 
-    def get(self, key: int) -> int:
-        # check if its in mapper, if so, remove from list, add it to front
+    def get(self, key: int) -> int: #O(1)
         if key not in self.mapper:
             return -1
-        target_node = self.mapper[key]
-        self.cache.remove_node(target_node)
-        self.cache.insert_front(target_node)
-        return target_node.val
+        node = self.mapper[key]
+        self.cache.remove(node)     # O(1)  # type: ignore
+        self.cache.push(node)       # O(1)  # type: ignore
+        return node.val     # type: ignore
 
     def put(self, key: int, value: int) -> None:
-        # check if key already exists, if so update the value of the node
+        # node exists with key already
         if key in self.mapper:
-            existing_node = self.mapper[key]
-            existing_node.val = value
-            self.cache.remove_node(existing_node)
-            self.cache.insert_front(existing_node)
+            node = self.mapper[key]
+            node.val = value            # type: ignore
+            self.cache.remove(node)     # type: ignore
+            self.cache.push(node)       # type: ignore
             return
 
-        if self.cache.size == self.capacity:
-            last_node = self.cache.remove_last()  # remove from doubly linked list
-            del self.mapper[last_node.key]  # remove from mapper
+        if self.capacity == self.cache.size:
+            node = self.cache.pop()
+            del self.mapper[node.key]
 
         new_node = Node(key, value)
-        self.cache.insert_front(new_node)
-        self.mapper[key] = new_node
+        self.cache.push(new_node)
+        self.mapper[key] = new_node     # type: ignore
 
 
