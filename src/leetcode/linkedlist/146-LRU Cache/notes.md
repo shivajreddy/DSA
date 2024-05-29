@@ -13,7 +13,8 @@ Shape of Mapper:
 Shape of Doubly Linked List:
    (-) <=> (-)
     h       t
-    
+
     **Note**: we have dedicated `head` and `tail` poitners
+
 
 
