@@ -56,7 +56,7 @@ class BrowserHistory:
             self.curr += steps
         node = self.urls[self.curr]
         return node.val
-        
+
 
 
 # Your BrowserHistory object will be instantiated and called as such:
