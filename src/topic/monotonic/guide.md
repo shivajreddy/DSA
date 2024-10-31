@@ -19,8 +19,6 @@
 - **Histogram Problems**: When dealing with areas under histograms or similar
   structures (e.g., finding the largest rectangle in a histogram).
 
----
-
 ## High level outline & Observations
 
 Outline:
@@ -36,8 +34,6 @@ Observations:
 - We don't necesarily build a mono stack and then again go over the input
   sequence, to find next/previous greater/smaller, we do this while building the
   mono stack
-
----
 
 ## Make decisions:
 
