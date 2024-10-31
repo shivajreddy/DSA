@@ -1,5 +1,8 @@
 # A Comprehensive Guide to Monotonic Stack Problems
 
+**NOTE**: (I use monotonic stack to explain, but same can be applied to
+monotonic queue)
+
 ## Introduction
 
 - Monotonic Datastructures, can be stack or Queue
@@ -35,9 +38,14 @@ Observations:
   sequence, to find next/previous greater/smaller, we do this while building the
   mono stack
 
-## Make decisions:
+## General Template for Monotonic Stack/Queue Problems
 
-### Should we traverse left to right (or) right to left for building the stack?
+### 1. Iterate through the elements
+
+Q: Should we traverse left to right (or) right to left for building the stack?
+
+- We can also just use left to right traversal for finding next or previous,
+  Lets look at defining the direction for being more explicit
 
 - This is the first decision to make, what is the direction to go over hte input
   sequence, is it left to right (next'th), or right to left(previous'th)
@@ -53,7 +61,20 @@ Observations:
   greater/smaller element then for building the mono stack we would iterate from
   left to right
 
-### Should we build monotonic increasing or monotonic decreasing?
+- Q: So how can we find the next greater element by using left-to-right
+  traversal:
+  - we build a decreasing mono-stack, and while processing current item, we
+    ensure the mono-stack propery that is we pop off items while current item >
+    top item.
+  - When ever we pop off an item, that tells us that our current item was the
+    popped item's next greatest number
+  - And hence it is easy if our mono-stack is holding indexes, so that that we
+    can go to the popped off index and we update the value at this index of
+    global result
+
+### 2. Initialize the Stack
+
+Q: Should we build monotonic increasing or monotonic decreasing?
 
 - Now we know the direction to go over the sequence while building the
   monostack. Next question should the stack be increasing or decreasing. (strict
@@ -70,41 +91,13 @@ Observations:
   - Incresing: [ 2 4 5 8 11 ], current element (say 13), so top most is current
     element's next/previous `smaller` element compared to current element
 
-- One key thing is we put the current on to the stack only when the stack
-  maintains it property (either increasing or decreasing), from boottom to top.
-- Simple question to ask ourself is,
-- When mono stack has elements that are always in increasing, that
-
-- Ask yourself: when processing an element in the sequence, we are either
-  computing what is it's next greater or previous smaller
-- If it is next greater:
-  - Build mono increasing stack
-- If it is next smaller:
-  - Build mono decreasing stack
-
-## General Template for Monotonic Stack/Queue Problems
-
-**NOTE**: (I use monotonic stack to explain, but same can be applied to
-monotonic queue)
-
-Below is a general template for solving monotonic stack problems:
-
-### 1. Initialize the Stack
-
 - Decide whether you need an increasing or decreasing stack based on the
   problem.
   - **Monotonically Increasing**: Maintains elements in increasing order.
   - **Monotonically Decreasing **: Maintains elements in decreasing order.
 - Initialize an empty stack (can be a simple array or deque or linked list).
 
-### 2. Iterate Through the Elements
-
 - Loop through each element in the array or sequence.
-
-```py
-for i in range(len(array)):
-    # Process each element
-```
 
 ### 3. Process the Stack
 
@@ -133,10 +126,6 @@ for i in range(len(array)):
 
 - Push the current index (or value, depending on the problem) onto the stack.
 
-```py
-stack.append(i)
-```
-
 ### 6. Post-Processing (if necessary)
 
 - After the loop, perform any additional calculations required by the problem.
@@ -144,8 +133,6 @@ stack.append(i)
 ---
 
 ## Example Problems
-
-Below are several example problems solved using the monotonic stack template.
 
 ### Example 1: Next Greater Element
 
@@ -168,7 +155,8 @@ def next_greater_element(nums):
     stack = []
 
     for i in range(n):
-        # While current element is greater than the element at index stored at the top of the stack
+        # While current element is greater than the element at index stored at
+        # the top of the stack
         while stack and nums[i] > nums[stack[-1]]:
             index = stack.pop()
             result[index] = nums[i]
