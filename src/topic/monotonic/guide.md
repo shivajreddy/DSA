@@ -2,51 +2,106 @@
 
 ## Introduction
 
-Monotonic stacks are a powerful data structure used to solve a variety of
-problems, especially those involving arrays and sequences where relationships
-between elements need to be determined (like the next greater or smaller
-element). A monotonic stack is a stack that maintains its elements in either
-increasing or decreasing order. This ordered property makes it particularly
-useful for optimizing solutions that would otherwise require nested loops,
-reducing time complexity from `O(n^2)` to `O(n)`
+- Monotonic Datastructures, can be stack or Queue
+- Properties of Monotonic Datastructures
+  - A sequence of elements that maintain increasing/decreasing property
+  - Since the datastructure maintains this property, it's useful to optimize
+    problems from `O(n^2)` to `O(n)`
+  - Can be adapted to both increasing and decreasing sequences based on the
+    problem requirements.
 
-## When and Why to Use Monotonic Stacks
+## When to Use Monotonic Stacks
 
-### When to Use
-
-- **Next/Previous Greater Element Problems**: When you need to find the next or
-  previous element that is greater than the current element.
-- **Next/Previous Smaller Element Problems**: When you need to find the next or
-  previous element that is smaller than the current element.
+- **Next/Previous Greater/Smaller Element Problems**: When you need to find the
+  next/previous element that is greater/smaller than the current element.
 - **Range Calculations**: When you need to calculate spans or ranges based on
   certain conditions (e.g., stock span problems).
 - **Histogram Problems**: When dealing with areas under histograms or similar
   structures (e.g., finding the largest rectangle in a histogram).
 
-### Why Use Monotonic Stacks
+---
 
-- **Efficiency**: Reduces time complexity from ( O(n^2) ) to ( O(n) ) by
-  eliminating the need for nested loops.
-- **Simplicity**: Simplifies complex problems by providing a structured
-  approach.
-- **Flexibility**: Can be adapted to both increasing and decreasing sequences
-  based on the problem requirements.
+## High level outline & Observations
+
+Outline:
+
+- Iterate over the sequence
+  - Process every element in the sequnce
+    - Ensure the mono stack holds it's property with regards to current element.
+    - Top of stack is the result for the current element. Update global result
+    - Add current item to stack
+
+Observations:
+
+- We don't necesarily build a mono stack and then again go over the input
+  sequence, to find next/previous greater/smaller, we do this while building the
+  mono stack
 
 ---
 
-## General Template for Monotonic Stack Problems
+## Make decisions:
+
+### Should we traverse left to right (or) right to left for building the stack?
+
+- This is the first decision to make, what is the direction to go over hte input
+  sequence, is it left to right (next'th), or right to left(previous'th)
+- Answer to this, depends on what we are looking for while processing a current
+  element in the sequence
+- If, for every element we have to find its **next** greatest/smallest, that
+  implies we are care about the elements that come after this current element,
+  so while building the mono stack, we should iterate from right to left.
+  Because when traversing a sequence from right to left, when we reach the
+  current element we know that we have gone over all the elements that come
+  after this current element
+- Vice versa, if we are dealing with current element's **previous**
+  greater/smaller element then for building the mono stack we would iterate from
+  left to right
+
+### Should we build monotonic increasing or monotonic decreasing?
+
+- Now we know the direction to go over the sequence while building the
+  monostack. Next question should the stack be increasing or decreasing. (strict
+  or not strict)
+- If need `greater` element, the mono stack is `decreasing`
+- If need `smaller` element, the mono stack is `increasing`
+
+- If you get stuck on deciding, look at both increasing an decreasing examples,
+  before adding the current elemnt to the mono stack (meaning mono stack is
+  valid before adding the current element)
+
+  - Decreasing: [ 13 9 8 5 ], current element (say 2), so top most is current  
+    element's next/preious `greater` element.
+  - Incresing: [ 2 4 5 8 11 ], current element (say 13), so top most is current
+    element's next/previous `smaller` element compared to current element
+
+- One key thing is we put the current on to the stack only when the stack
+  maintains it property (either increasing or decreasing), from boottom to top.
+- Simple question to ask ourself is,
+- When mono stack has elements that are always in increasing, that
+
+- Ask yourself: when processing an element in the sequence, we are either
+  computing what is it's next greater or previous smaller
+- If it is next greater:
+  - Build mono increasing stack
+- If it is next smaller:
+  - Build mono decreasing stack
+
+## General Template for Monotonic Stack/Queue Problems
+
+**NOTE**: (I use monotonic stack to explain, but same can be applied to
+monotonic queue)
 
 Below is a general template for solving monotonic stack problems:
 
-### 1\. Initialize the Stack
+### 1. Initialize the Stack
 
 - Decide whether you need an increasing or decreasing stack based on the
   problem.
-  - **Monotonically Increasing Stack**: Maintains elements in increasing order.
-  - **Monotonically Decreasing Stack**: Maintains elements in decreasing order.
-- Initialize an empty stack (can be a simple array or linked list).
+  - **Monotonically Increasing**: Maintains elements in increasing order.
+  - **Monotonically Decreasing **: Maintains elements in decreasing order.
+- Initialize an empty stack (can be a simple array or deque or linked list).
 
-### 2\. Iterate Through the Elements
+### 2. Iterate Through the Elements
 
 - Loop through each element in the array or sequence.
 
@@ -55,25 +110,30 @@ for i in range(len(array)):
     # Process each element
 ```
 
-### 3\. Process the Stack
+### 3. Process the Stack
 
 - **While Loop Condition**: While the stack is not empty and the current element
   breaks the monotonic condition with the element at the top of the stack.
-
-  - For increasing stack: `while stack and array[stack[-1]] > array[i]:`
-  - For decreasing stack: `while stack and array[stack[-1]] < array[i]:`
-
+  - If we are doing strictly increasing/decreasing:
+    - For increasing stack: `while stack and array[stack[-1]] > array[i]:`
+    - For decreasing stack: `while stack and array[stack[-1]] < array[i]:`
+  - If we are **NOT** doing strictly increasing/decreasing:
+    - For increasing stack: `while stack and array[stack[-1]] >= array[i]:`
+    - For decreasing stack: `while stack and array[stack[-1]] <= array[i]:`
 - **Process Elements**: Pop elements from the stack until the condition is
   satisfied.
+- NOTE: Though we are using a while loop here, in the worst case all elements go
+  into the stack popped from stack, so at most 2 times an item is touched. which
+  is linear time complexity.
 
-### 4\. Perform Necessary Calculations
+### 4. Perform Necessary Calculations
 
 - **Before Pushing**: If needed, perform calculations using the indices or
   values.
 - **After Popping**: Use the index or value of the popped element to compute
   results (e.g., span, area).
 
-### 5\. Push Current Element Onto Stack
+### 5. Push Current Element Onto Stack
 
 - Push the current index (or value, depending on the problem) onto the stack.
 
@@ -81,7 +141,7 @@ for i in range(len(array)):
 stack.append(i)
 ```
 
-### 6\. Post-Processing (if necessary)
+### 6. Post-Processing (if necessary)
 
 - After the loop, perform any additional calculations required by the problem.
 
@@ -96,7 +156,7 @@ Below are several example problems solved using the monotonic stack template.
 #### Problem Statement
 
 Given an array of integers `nums`, for each element find the next element that
-is greater than it. If there is no such element, use \-1.
+is greater than it. If there is no such element, use -1.
 
 #### Solution Explanation
 
@@ -265,7 +325,7 @@ def calculate_span(prices):
 
 Given an array of integers `A` and an integer `K`, find the length of the
 shortest, non-empty, contiguous subarray of `A` with sum at least `K`. If no
-such subarray exists, return \-1.
+such subarray exists, return -1.
 
 #### Solution Explanation
 
@@ -306,7 +366,7 @@ def shortest_subarray(A, K):
 
 Given an array of integers `A`, find the sum of `min(B)`, where `B` ranges over
 every (contiguous) subarray of `A`. Since the answer may be large, return the
-answer modulo 10^9 \+ 7\.
+answer modulo 10^9 + 7.
 
 #### Solution Explanation
 
