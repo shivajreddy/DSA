@@ -1,6 +1,23 @@
 from typing import List
 
 
+class Solution2:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        heights.append(0)  # Append a zero to handle remaining bars
+        stack = [-1]  # Initialize stack with sentinel value
+        max_area = 0
+
+        for i in range(len(heights)):
+            # While the current bar is smaller than the last stacked bar
+            while heights[i] < heights[stack[-1]]:
+                height = heights[stack.pop()]
+                width = i - stack[-1] - 1  # Calculate the width
+                max_area = max(max_area, height * width)
+            stack.append(i)
+        heights.pop()  # Clean up the appended zero
+        return max_area
+
+
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         n = len(heights)
