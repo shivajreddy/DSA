@@ -8,6 +8,15 @@ class Solution:
 
         stack = [n - 1]
 
+        # Increasing mono stack
+
+        # Next greater element
+        # Decreasing mono stack
+        stack = []
+        for idx, num in enumerate(temperatures):
+            while stack and temperatures[stack[-1]] < num:
+                answer[stack[-1]] = idx - stack[-1]
+
         return answer
 
 
