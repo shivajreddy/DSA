@@ -42,18 +42,14 @@ class Solution:
 sol = Solution()
 
 """
-numCourses = 2
-prerequisites = [[1, 0]]
+numCourses, prerequisites  = 2, [[1, 0]]
 assert sol.findOrder(numCourses, prerequisites) == [0, 1]
 """
 
-
-numCourses = 4
-prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
+numCourses, prerequisites = 4, [[1, 0], [2, 0], [3, 1], [3, 2]]
 assert sol.findOrder(numCourses, prerequisites) == [0, 2, 1, 3]
 
 """
-numCourses = 1
-prerequisites = []
+numCourses, prerequisites  = 1, []
 assert sol.findOrder(numCourses, prerequisites) == [0]
 """
