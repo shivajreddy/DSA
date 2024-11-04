@@ -11,7 +11,6 @@ class TreeNode:
 
 
 class Solution:
-
     # DFS
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         result = []
@@ -34,7 +33,6 @@ class Solution:
 
     # BFS
     def rightSideView_bfs(self, root: Optional[TreeNode]) -> List[int]:
-
         if not root:
             return []
 
