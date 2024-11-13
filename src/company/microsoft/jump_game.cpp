@@ -10,10 +10,13 @@ public:
         int remaining = 0;
 
         for (int num : nums) {
-            max_reach +=
+            if (remaining < 0)
+                return false;
+            max_reach += remaining + num;
+            if (max_reach >= nums.size() - 1)
+                return true;
         }
-
-        int remaining -= 1;
+        remaining -= 1;
 
         return false;
     }
