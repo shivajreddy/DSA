@@ -8,9 +8,16 @@ public:
     int coinChange(vector<int>& coins, int amount) {
         return -1;
     }
-}
+};
 
-int main(){
+/*
+
+coins:
+amount:
+
+*/
+
+int main() {
     Solution* s = new Solution();
     vector<int> coins;
     int amount;
