@@ -1,0 +1,14 @@
+
+coins = 1, 2, 5
+amount = 11
+
+        0
+    1   2   5
+  125  125  125
+
+rec(coins, curr_amount):
+
+if curr_amount > amount: return
+if curr_amount == amount: res = min(res, coins)
+else: for coin in all_coins: rec(coins+1, curr_amount+coin)
+
