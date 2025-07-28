@@ -7,7 +7,43 @@ using namespace std;
 class Solution {
 public:
     int maximumPopulation(vector<vector<int>>& logs) {
-        return -1;
+        int n = logs.size();
+
+        vector<pair<int, char>> all(2 * n);
+        for (int i = 0; i < n; i++) {
+            int s = logs[i][0], e = logs[i][1];
+            all[i * 2] = { s, 's' };
+            all[i * 2 + 1] = { e, 'e' };
+        }
+
+        // for (int i = 0; i < 2 * n; i++)
+        //     cout << "[" << all[i].first << '-' << all[i].second << "] ";
+        // cout << endl;
+
+        sort(all.begin(), all.end());
+
+        int res;
+        int max_pop = -1;
+        int curr = 0;
+
+        for (int i = 0; i < 2 * n; i++) {
+            // cout << "[" << all[i].first << '-' << all[i].second << "] ";
+            if (all[i].second == 's') {
+                curr++;
+            } else {
+                curr--;
+            }
+
+            if (curr > max_pop) {
+                max_pop = curr;
+                res = all[i].first;
+            }
+        }
+        return res;
+
+        // for (int i = 0; i < 2 * n; i++)
+        //     cout << "[" << all[i].first << '-' << all[i].second << "] ";
+        // cout << endl;
     }
 };
 
