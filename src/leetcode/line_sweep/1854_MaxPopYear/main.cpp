@@ -16,10 +16,6 @@ public:
             all[i * 2 + 1] = { e, 'e' };
         }
 
-        // for (int i = 0; i < 2 * n; i++)
-        //     cout << "[" << all[i].first << '-' << all[i].second << "] ";
-        // cout << endl;
-
         sort(all.begin(), all.end());
 
         int res;
@@ -27,7 +23,6 @@ public:
         int curr = 0;
 
         for (int i = 0; i < 2 * n; i++) {
-            // cout << "[" << all[i].first << '-' << all[i].second << "] ";
             if (all[i].second == 's') {
                 curr++;
             } else {
