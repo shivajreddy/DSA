@@ -11,24 +11,6 @@ public:
                                vector<int>& newInterval) {
 
         int n = intervals.size();
-        sort(intervals.begin(), intervals.end());
-
-        int left_most, right_most;
-        left_most = intervals[0][0], right_most = intervals[0][1];
-
-        vector<vector<int>> res;
-
-        for (int i = 1; i < n; i++) {
-            if (right_most < intervals[i][0]) {
-                res.push_back({ left_most, right_most });
-                left_most = intervals[i][0], right_most = intervals[i][1];
-            } else {
-                right_most = max(right_most, intervals[i][1]);
-            }
-        }
-        res.push_back({ left_most, right_most });
-
-        return res;
     }
 };
 
