@@ -10,7 +10,7 @@ public:
     vector<vector<int>> insert(vector<vector<int>>& intervals,
                                vector<int>& newInterval) {
 
-        int n = intervals.size();
+        return { { -1, -10 } };
     }
 };
 
