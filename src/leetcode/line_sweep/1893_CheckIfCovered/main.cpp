@@ -13,16 +13,16 @@ public:
 
         sort(ranges.begin(), ranges.end());
 
-        int left_most = ranges[0][0];
-        int right_most = ranges[0][1];
+        int left_most, right_most;
+
+        left_most = ranges[0][0], right_most = ranges[0][1];
 
         for (int i = 1; i < n; i++) {
             if (ranges[i][0] > right_most + 1) { // gap
                 if (left >= left_most && right <= right_most) {
                     return true;
                 } else {
-                    left_most = ranges[i][0];
-                    right_most = ranges[i][1];
+                    left_most = ranges[i][0], right_most = ranges[i][1];
                 }
             }
             if (ranges[i][1] > right_most) right_most = ranges[i][1];
