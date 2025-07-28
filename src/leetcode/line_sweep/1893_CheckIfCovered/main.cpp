@@ -8,7 +8,31 @@ using namespace std;
 class Solution {
 public:
     bool isCovered(vector<vector<int>>& ranges, int left, int right) {
-        return false;
+
+        int n = ranges.size();
+
+        sort(ranges.begin(), ranges.end());
+
+        int left_most = ranges[0][0];
+        int right_most = ranges[0][1];
+
+        for (int i = 1; i < n; i++) {
+            if (ranges[i][0] > right_most + 1) { // gap
+                if (left >= left_most && right <= right_most) {
+                    return true;
+                } else {
+                    left_most = ranges[i][0];
+                    right_most = ranges[i][1];
+                }
+            }
+            if (ranges[i][1] > right_most) right_most = ranges[i][1];
+        }
+
+        if (left >= left_most && right <= right_most) {
+            return true;
+        } else {
+            return false;
+        }
     }
 };
 
@@ -25,6 +49,11 @@ int main() {
     {
         ranges = { { 1, 10 }, { 10, 20 } };
         left = 21, right = 21;
+        cout << sol->isCovered(ranges, left, right) << endl;
+    }
+    {
+        ranges = { { 3, 3 }, { 1, 1 } };
+        left = 3, right = 3;
         cout << sol->isCovered(ranges, left, right) << endl;
     }
 
