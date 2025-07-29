@@ -15,7 +15,7 @@ public:
 
         int n = intervals.size();
 
-        int ans = 0;
+        int overlaps = 0; // count of min. overlaps to remove
         int k = INT_MIN;
 
         for (int i = 0; i < n; i++) {
@@ -24,11 +24,11 @@ public:
             if (s >= k) { // Case 1: current start is after previous end
                 k = e;
             } else { // Case 2: curr start is before the previous end
-                ans++;
+                overlaps++;
             }
         }
 
-        return ans;
+        return overlaps;
     }
 };
 
