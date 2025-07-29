@@ -32,55 +32,6 @@ public:
     }
 };
 
-class Solution2 {
-public:
-    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        int n = intervals.size();
-
-        vector<pair<int, char>> events(n * 2);
-        for (int i = 0; i < n; i++) {
-            events[i * 2] = { intervals[i][0], 's' };
-            events[i * 2 + 1] = { intervals[i][1], 'e' };
-        }
-        sort(events.begin(), events.end());
-
-        int overlaps = 0, max_overlaps = 0;
-
-        for (int i = 0; i < 2 * n; i++) {
-            if (events[i].second == 's') {
-                overlaps++;
-            } else {
-                overlaps--;
-            }
-            max_overlaps = max(max_overlaps, overlaps);
-        }
-        // cout << max_overlaps - 1 << endl;
-        return max_overlaps - 1;
-
-        /*
-        sort(intervals.begin(), intervals.end()); // n.log(n)
-
-        vector<vector<int>> res;
-        res.push_back(intervals[0]);
-
-        for (int i = 1; i < n; i++) {
-            if (res.back()[1] > intervals[i][0]) {
-                int prev_d = res.back()[1] - res.back()[0] + 1;
-                int curr_d = intervals[i][1] - intervals[i][0] + 1;
-                if (prev_d > curr_d) {
-                    res.pop_back(); // remove the previous
-                    res.push_back(intervals[i]);
-                }
-            } else {
-                res.push_back(intervals[i]);
-            }
-        }
-
-        return res.size();
-        */
-    }
-};
-
 int main() {
     Solution* sol = new Solution();
 
