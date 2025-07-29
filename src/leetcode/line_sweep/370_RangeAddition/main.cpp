@@ -1,5 +1,5 @@
-// 253. Meeting Rooms II
-// https://leetcode.com/problems/meeting-rooms-ii
+// 370. Range Addition
+// https://leetcode.com/problems/range-addition
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -7,7 +7,35 @@ using namespace std;
 class Solution {
 public:
     vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
-        return { -1, -1 };
+
+        int n = updates.size();
+        vector<tuple<int, char, int>> events(2 * n);
+
+        for (int i = 0; i < n; i++) {
+            events[i * 2] = { updates[i][0], 's', updates[i][2] };
+            events[i * 2 + 1] = { updates[i][1] + 1, 'e', updates[i][2] };
+        }
+
+        sort(events.begin(), events.end()); // n.log(n)
+
+        vector<int> res(length, 0);
+        int val = 0;
+        int event_idx = 0;
+        for (int i = 0; i < length; i++) { // TIME: O(length)
+            while (event_idx < events.size() &&
+                   get<0>(events[event_idx]) == i) {
+                if (get<1>(events[event_idx]) == 's') { // start
+                    val += get<2>(events[event_idx]); // increase curr val by k
+                } else {                              // end
+                    val -= get<2>(events[event_idx]); // decrease curr val by k
+                }
+                event_idx++; // go to next event
+            }
+            // cout << "i:" << i << " val: " << val << endl;
+            res[i] = val;
+        }
+
+        return res;
     }
 };
 
