@@ -13,6 +13,7 @@ public:
 
         for (int i = 0; i < n; i++) {
             events[i * 2] = { updates[i][0], 's', updates[i][2] };
+            // since range is inclusive, start reducing after the update's end
             events[i * 2 + 1] = { updates[i][1] + 1, 'e', updates[i][2] };
         }
 
@@ -31,7 +32,6 @@ public:
                 }
                 event_idx++; // go to next event
             }
-            // cout << "i:" << i << " val: " << val << endl;
             res[i] = val;
         }
 
