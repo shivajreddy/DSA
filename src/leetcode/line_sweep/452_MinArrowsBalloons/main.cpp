@@ -15,12 +15,13 @@ public:
         int n = points.size();
 
         int arrows = 1;
-        int arrowPos = points[0][1];
+        int arrow_position = points[0][1]; // shoot arrow at end of first baloon
 
         for (int i = 1; i < n; i++) {
-            if (points[i][0] > arrowPos) {
+            if (points[i][0] > arrow_position) {
+                // curr baloon starts after our arrow position, need new arrow
                 arrows++;
-                arrowPos = points[i][1];
+                arrow_position = points[i][1];
             }
         }
         return arrows;
