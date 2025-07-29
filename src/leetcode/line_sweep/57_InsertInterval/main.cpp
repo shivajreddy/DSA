@@ -9,7 +9,30 @@ class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals,
                                vector<int>& newInterval) {
+        int n = intervals.size();
+
+        intervals.push_back(newInterval);
+        sort(intervals.begin(), intervals.end()); // n.log(n)
+
         vector<vector<int>> res;
+        res.push_back(intervals[0]);
+
+        for (int i = 1; i < n + 1; i++) { // n+1 since we added new-interal
+            vector<int> prev = res.back();
+            if (prev[0] <= intervals[i][0] && intervals[i][1] <= prev[1]) {
+                continue;
+            }
+            // new interval merges with previous intnerval
+            if (intervals[i][0] <= prev[1]) {
+                int s = min(prev[0], intervals[i][0]); // min of both starts
+                int e = max(prev[1], intervals[i][1]); // max of both ends
+                res.pop_back();
+                res.push_back({ s, e });
+            } else { // doesnt merge, so add this interval
+                res.push_back(intervals[i]);
+            }
+        }
+
         return res;
     }
 };
