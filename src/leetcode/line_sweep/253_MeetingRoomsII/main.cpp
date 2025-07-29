@@ -8,16 +8,26 @@ class Solution {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
 
-        function<void(vector<vector<int>>&)> print_intervals =
-            [&](vector<vector<int>>& v) -> void {
-            for (auto& interval : v) {
-                cout << "[" << interval[0] << " " << interval[1] << "] ";
-            }
-            cout << endl;
-        };
-        // print_intervals(intervals);
+        int n = intervals.size();
 
-        return -1;
+        vector<pair<int, char>> events(2 * n);
+        for (int i = 0; i < n; i++) {
+            events[i * 2] = { intervals[i][0], 's' };
+            events[i * 2 + 1] = { intervals[i][1], 'e' };
+        }
+
+        sort(events.begin(), events.end()); // 2n.log(2n) => n.log(n)
+
+        int rooms = 0, res = 0;
+        for (int i = 0; i < 2 * n; i++) {
+            if (events[i].second == 's') {
+                rooms++;
+            } else {
+                rooms--;
+            }
+            res = max(res, rooms);
+        }
+        return res;
     }
 };
 
