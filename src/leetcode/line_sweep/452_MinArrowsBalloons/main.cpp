@@ -18,7 +18,7 @@ public:
         // use long long to track the previous shot end.
         // or start iterating from 1, and begin prev_shot_end as points[0][1]
         // and arrows count as 1
-        long long prev_shot_end = -1e17;
+        long long prev_shot_end = -1e17; // arrow position
         int arrows = 0;
         for (int i = 0; i < n; i++) {
             int curr_start = points[i][0], curr_end = points[i][1];
@@ -48,49 +48,15 @@ public:
         int n = points.size();
 
         int arrows = 1;
-        int arrow_position = points[0][1]; // shoot arrow at end of first baloon
+        int prev_arrow_shot_at =
+            points[0][1]; // shoot arrow at end of first baloon
 
         for (int i = 1; i < n; i++) {
-            if (points[i][0] > arrow_position) {
+            int curr_start = points[i][0], curr_end = points[i][1];
+            if (prev_arrow_shot_at < curr_start) {
                 // curr baloon starts after our arrow position, need new arrow
                 arrows++;
-                arrow_position = points[i][1];
-            }
-        }
-        return arrows;
-    }
-};
-
-class Solution2 {
-public:
-    int findMinArrowShots(vector<vector<int>>& points) {
-
-        auto print_vvi = [&](vector<vector<int>> v) {
-            int n = v.size();
-            for (int i = 0; i < n; i++)
-                cout << "[" << v[i][0] << " " << v[i][1] << "] ";
-            cout << endl;
-        };
-
-        // print_vvi(points);
-        sort(points.begin(), points.end());
-        // print_vvi(points);
-
-        int n = points.size();
-        int arrows = 1;
-        int prev = points[0][1];
-        for (int i = 1; i < n; i++) {
-            // cout << "checking points[" << i << "]" << endl;
-            if (points[i][0] > prev) {
-                prev = points[i][1];
-                arrows++;
-            } else {
-                while (i < n && points[i][0] <= prev) {
-                    // cout << "prev:" << prev << " skipping i:" << i << "
-                    // because points[i][0]" << points[i][0] << endl;
-                    i++;
-                }
-                i--;
+                prev_arrow_shot_at = curr_end;
             }
         }
         return arrows;
@@ -98,11 +64,19 @@ public:
 };
 
 int main() {
-    Solution* sol = new Solution();
+    // Solution* sol = new Solution();
+    SolutionMain* sol = new SolutionMain();
+    // SolutionPractice* sol = new SolutionPractice();
 
     vector<vector<int>> points;
 
-    // /*
+    auto print_vvi = [&](vector<vector<int>> v) {
+        int n = v.size();
+        for (int i = 0; i < n; i++)
+            cout << "[" << v[i][0] << " " << v[i][1] << "] ";
+        cout << endl;
+    };
+
     {
         points = { { 10, 16 }, { 2, 8 }, { 1, 6 }, { 7, 12 } };
         cout << sol->findMinArrowShots(points) << endl;
