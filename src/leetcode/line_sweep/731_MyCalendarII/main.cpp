@@ -20,13 +20,16 @@ public:
         // Check if this causes any triple booking
         int count = 0;
         for (auto& [booking_time, no_of_bookings] : timeline) {
+            // at no point should there be 3 bookings, since our timeline is an
+            // ordered map, we
             count += no_of_bookings;
             if (count >= 3) {
                 // Triple booking detected, undo the booking
                 timeline[startTime]--;
                 timeline[endTime]++;
-                if (timeline[startTime] == 0) timeline.erase(startTime);
-                if (timeline[endTime] == 0) timeline.erase(endTime);
+                // dont necessarily have to delete removed entries if they go 0
+                // if (timeline[startTime] == 0) timeline.erase(startTime);
+                // if (timeline[endTime] == 0) timeline.erase(endTime);
                 return false;
             }
         }
@@ -42,7 +45,7 @@ public:
     // vector<long long> tl
     vector<pair<long long, int>> tl = { { -1e17, 0 }, { 1e17, 0 } };
 
-    MyCalendarTwo() {
+    MyCalendarTwoMyAttempt() {
     }
 
     bool book(int startTime, int endTime) {
