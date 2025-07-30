@@ -3,6 +3,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
     vector<vector<int>> removeInterval(vector<vector<int>>& intervals,
@@ -37,45 +38,6 @@ public:
         }
 
         return result;
-    }
-};
-
-class Solution2 {
-public:
-    vector<vector<int>> removeInterval(vector<vector<int>>& intervals,
-                                       vector<int>& toBeRemoved) {
-
-        int i = 0;
-        int n = intervals.size();
-
-        vector<vector<int>> res;
-
-        // add all intervals that are completely before toBeRemoved
-        while (i < n && intervals[i][0] < toBeRemoved[0]) {
-            res.push_back(intervals[i]);
-            i++;
-        }
-
-        // add all intervals that intersect with toBeRemoved
-        while (i < n && intervals[i][1] < toBeRemoved[1]) {
-            if (intervals[i][0] < toBeRemoved[0]) { // left slice
-                res.push_back({ intervals[i][0], toBeRemoved[0] });
-                i++;
-            } else if (toBeRemoved[0] <= intervals[i][0] &&
-                       intervals[i][1] <= toBeRemoved[1]) {
-                i++;
-                continue;
-            } else {
-            }
-        }
-
-        // add all intervals that are completely after toBeRemoved
-        while (i < n) {
-            res.push_back(intervals[i]);
-            i++;
-        }
-
-        return res;
     }
 };
 
