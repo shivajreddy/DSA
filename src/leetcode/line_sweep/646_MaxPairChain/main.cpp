@@ -8,6 +8,8 @@ class Solution {
 public:
     int findLongestChain(vector<vector<int>>& pairs) {
 
+        // sorting by end link, so that we greedily always use the link that
+        // ends before the next link end.
         sort(pairs.begin(), pairs.end(),
              [&](const vector<int>& a, const vector<int>& b) {
                  return a[1] < b[1];
