@@ -2,7 +2,6 @@
 // https://leetcode.com/problems/non-overlapping-intervals
 
 #include <bits/stdc++.h>
-#include <climits>
 using namespace std;
 
 class Solution {
