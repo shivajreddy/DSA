@@ -2,12 +2,15 @@
 // https://leetcode.com/problems/non-overlapping-intervals
 
 #include <bits/stdc++.h>
+#include <climits>
 using namespace std;
 
 class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        // sort based on endings
+        // Sort intervals by their END time (greedy approach)
+        // This ensures we always consider keeping the interval that ends
+        // earliest
         sort(intervals.begin(), intervals.end(),
              [&](const vector<int>& a, const vector<int>& b) {
                  return a[1] < b[1];
@@ -15,20 +18,31 @@ public:
 
         int n = intervals.size();
 
-        int overlaps = 0; // count of min. overlaps to remove
-        int k = INT_MIN;
+        int last_kept_endtime =
+            INT_MIN; // End time of the last interval we decided to keep
+        int intervals_to_remove = 0;
 
         for (int i = 0; i < n; i++) {
-            int s = intervals[i][0], e = intervals[i][1];
+            int curr_start = intervals[i][0], curr_end = intervals[i][1];
 
-            if (s >= k) { // Case 1: current start is after previous end
-                k = e;
-            } else { // Case 2: curr start is before the previous end
-                overlaps++;
+            // Check if current interval overlaps with the last kept interval
+            if (last_kept_endtime <= curr_start) {
+                // NO OVERLAP: Current interval starts after the last kept
+                // interval ends We can safely keep this interval
+                last_kept_endtime =
+                    curr_end; // Update our tracking to this interval's end
+            } else {
+                // OVERLAP DETECTED: Current interval starts before the last
+                // kept interval ends We must remove one of them. Since we
+                // sorted by end time, the last kept interval ends earlier, so
+                // we remove the current interval (greedy choice)
+                intervals_to_remove++;
+                // Note: We DON'T update last_kept_endtime because we're
+                // removing current interval
             }
         }
 
-        return overlaps;
+        return intervals_to_remove;
     }
 };
 
