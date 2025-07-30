@@ -15,7 +15,9 @@ public:
 
         int n = points.size();
         // NOTE: taking INT_MIN would fail when interval starts at INT_MIN, so
-        // use long long to track the previous shot end
+        // use long long to track the previous shot end.
+        // or start iterating from 1, and begin prev_shot_end as points[0][1]
+        // and arrows count as 1
         long long prev_shot_end = -1e17;
         int arrows = 0;
         for (int i = 0; i < n; i++) {
