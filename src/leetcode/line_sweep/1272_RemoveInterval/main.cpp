@@ -1,15 +1,81 @@
 // 1272. Remove Interval
-// https://leetcode.com/problems/remove-interval/?envType=problem-list-v2&envId=mzw3cyy6
+// https://leetcode.com/problems/remove-interval
 
 #include <bits/stdc++.h>
 using namespace std;
-
 class Solution {
 public:
     vector<vector<int>> removeInterval(vector<vector<int>>& intervals,
                                        vector<int>& toBeRemoved) {
 
-        return {};
+        vector<vector<int>> result;
+
+        for (const auto& interval : intervals) {
+            // Case 1: No overlap - interval is completely before toBeRemoved
+            if (interval[1] <= toBeRemoved[0]) {
+                result.push_back(interval);
+            }
+            // Case 2: No overlap - interval is completely after toBeRemoved
+            else if (interval[0] >= toBeRemoved[1]) {
+                result.push_back(interval);
+
+            }
+            // Case 3: There is overlap - handle the remaining parts
+            else {
+                // Add left part if it exists (interval starts before
+                // toBeRemoved)
+                if (interval[0] < toBeRemoved[0]) {
+                    result.push_back({ interval[0], toBeRemoved[0] });
+                }
+                // Add right part if it exists (interval ends after toBeRemoved)
+                if (interval[1] > toBeRemoved[1]) {
+                    result.push_back({ toBeRemoved[1], interval[1] });
+                }
+                // Note: If interval is completely contained in toBeRemoved,
+                // both conditions above are false, so nothing gets added
+            }
+        }
+
+        return result;
+    }
+};
+
+class Solution2 {
+public:
+    vector<vector<int>> removeInterval(vector<vector<int>>& intervals,
+                                       vector<int>& toBeRemoved) {
+
+        int i = 0;
+        int n = intervals.size();
+
+        vector<vector<int>> res;
+
+        // add all intervals that are completely before toBeRemoved
+        while (i < n && intervals[i][0] < toBeRemoved[0]) {
+            res.push_back(intervals[i]);
+            i++;
+        }
+
+        // add all intervals that intersect with toBeRemoved
+        while (i < n && intervals[i][1] < toBeRemoved[1]) {
+            if (intervals[i][0] < toBeRemoved[0]) { // left slice
+                res.push_back({ intervals[i][0], toBeRemoved[0] });
+                i++;
+            } else if (toBeRemoved[0] <= intervals[i][0] &&
+                       intervals[i][1] <= toBeRemoved[1]) {
+                i++;
+                continue;
+            } else {
+            }
+        }
+
+        // add all intervals that are completely after toBeRemoved
+        while (i < n) {
+            res.push_back(intervals[i]);
+            i++;
+        }
+
+        return res;
     }
 };
 
@@ -30,16 +96,20 @@ int main() {
     };
 
     {
-        cout << "TESTCASE 1\n";
-        intervals = { { 10, 50 }, { 60, 120 }, { 140, 210 } };
-        toBeRemoved = {};
+        intervals = { { 0, 2 }, { 3, 4 }, { 5, 7 } };
+        toBeRemoved = { 1, 6 };
         print_vvi(sol->removeInterval(intervals, toBeRemoved));
     }
 
     {
-        cout << "TESTCASE 2\n";
-        intervals = { { 10, 50 }, { 60, 120 }, { 140, 210 } };
-        toBeRemoved = {};
+        intervals = { { 0, 5 } };
+        toBeRemoved = { 2, 3 };
+        print_vvi(sol->removeInterval(intervals, toBeRemoved));
+    }
+
+    {
+        intervals = { { -5, -4 }, { -3, -2 }, { 1, 2 }, { 3, 5 }, { 8, 9 } };
+        toBeRemoved = { -1, 4 };
         print_vvi(sol->removeInterval(intervals, toBeRemoved));
     }
 
