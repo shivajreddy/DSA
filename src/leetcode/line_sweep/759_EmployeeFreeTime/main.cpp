@@ -22,46 +22,39 @@ public:
 class Solution {
 public:
     vector<Interval> employeeFreeTime(vector<vector<Interval>> schedule) {
-        vector<Interval> all_busy;
 
-        // Collect all busy intervals from all employees
-        for (const auto& emp : schedule) {
-            for (const auto& interval : emp) {
-                all_busy.push_back(interval);
-            }
-        }
-
-        // Sort intervals by start time
-        sort(all_busy.begin(), all_busy.end(),
-             [](const Interval& a, const Interval& b) {
-                 return a.start < b.start;
-             });
-
+        // 1. Collect all busy intervals from all employees
+        vector<Interval> all;
+        for (const auto& emp : schedule)
+            for (const auto& interval : emp) all.push_back(interval);
+        // 2. Sort intervals by start time
+        sort(all.begin(), all.end(), [](const Interval& a, const Interval& b) {
+            return a.start < b.start;
+        });
+        // 3. combine all intervals (merge intervals)
         // Merge overlapping intervals to get union of all busy times
-        vector<Interval> merged;
-        for (const auto& interval : all_busy) {
-            if (merged.empty() || merged.back().end < interval.start) {
-                // No overlap with previous interval
-                merged.push_back(interval);
+        vector<Interval> combined;
+        for (const auto& interval : all) {
+            if (combined.empty() || combined.back().end < interval.start) {
+                combined.push_back(interval);
             } else {
-                // Overlap exists, merge intervals
-                merged.back().end = max(merged.back().end, interval.end);
+                combined.back().end = max(combined.back().end, interval.end);
             }
         }
-
-        // Find gaps between merged busy intervals (these are free times)
-        vector<Interval> result;
-        for (int i = 1; i < merged.size(); i++) {
-            if (merged[i - 1].end < merged[i].start) {
-                result.push_back(Interval(merged[i - 1].end, merged[i].start));
-            }
+        // 4. Get all the free blocks b/w the merged intervals
+        // Note: we dont have to check if the width of this gap is > 0,
+        // because when we merged exactly next to each other intervals
+        // EX: [1 3] [3 5] got merged to [1 5]
+        vector<Interval> res;
+        for (int i = 1; i < combined.size(); i++) {
+            res.push_back(Interval(combined[i - 1].end, combined[i].start));
         }
-
-        return result;
+        return res;
     }
 };
 
-// BUG: failing for 3rd test case
+// BUG: failing for 3rd test case.
+// dont do this because, its a unnecessarily complex approach.
 class SolutionMine {
 public:
     vector<Interval> employeeFreeTime(vector<vector<Interval>> schedule) {
