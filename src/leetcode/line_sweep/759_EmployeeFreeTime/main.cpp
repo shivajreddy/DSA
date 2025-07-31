@@ -22,68 +22,6 @@ public:
 class Solution {
 public:
     vector<Interval> employeeFreeTime(vector<vector<Interval>> schedule) {
-        vector<Interval> free_blocks;
-
-        // Find free blocks for each employee
-        for (auto emp : schedule) {
-            for (int i = 1; i < emp.size(); i++) {
-                // Gap between consecutive intervals of same employee
-                if (emp[i - 1].end < emp[i].start) {
-                    free_blocks.push_back(
-                        Interval(emp[i - 1].end, emp[i].start));
-                }
-            }
-        }
-
-        if (free_blocks.empty()) {
-            return {};
-        }
-
-        int n = free_blocks.size();
-        vector<pair<int, char>> events(2 * n);
-        for (int i = 0; i < n; i++) {
-            events[i * 2] = { free_blocks[i].start, 's' };
-            events[i * 2 + 1] = { free_blocks[i].end, 'e' };
-        }
-
-        // Sort events by time, with 's' events before 'e' events at same time
-        sort(events.begin(), events.end(),
-             [&](const pair<int, char>& a, const pair<int, char>& b) {
-                 if (a.first == b.first) {
-                     return a.second == 's' && b.second == 'e';
-                 }
-                 return a.first < b.first;
-             });
-
-        int total_emp = schedule.size();
-        vector<Interval> res;
-        int curr_free_emp = 0;
-        int free_start = -1;
-
-        for (int i = 0; i < events.size(); i++) {
-            if (events[i].second == 's') {
-                curr_free_emp++;
-                // When all employees become free, mark the start
-                if (curr_free_emp == total_emp) {
-                    free_start = events[i].first;
-                }
-            } else { // 'e' event
-                // If all employees were free, add the interval before one
-                // becomes busy
-                if (curr_free_emp == total_emp) {
-                    res.push_back(Interval(free_start, events[i].first));
-                }
-                curr_free_emp--;
-            }
-        }
-
-        return res;
-    }
-};
-
-class SolutionMain {
-public:
-    vector<Interval> employeeFreeTime(vector<vector<Interval>> schedule) {
         vector<Interval> all_busy;
 
         // Collect all busy intervals from all employees
@@ -123,6 +61,7 @@ public:
     }
 };
 
+// BUG: failing for 3rd test case
 class SolutionMine {
 public:
     vector<Interval> employeeFreeTime(vector<vector<Interval>> schedule) {
