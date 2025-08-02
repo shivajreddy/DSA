@@ -18,14 +18,8 @@ public:
                            vector<int>& waterStartTime,
                            vector<int>& waterDuration) {
 
-        /*
-eA = earliest end time of A
-eB = earliest end time of B
-min(
-eA + shortest duration with start time <= eA
-eB + shortest duration with start time <= eB
-)
-*/
+        // case1: land then water
+        // case1: water then land
         int n;
         // earliest to finish A, B
         n = landDuration.size();

@@ -20,7 +20,7 @@ public:
         sort(nums.begin(), nums.end());
 
         // Two-pointer approach to find longest valid subarray
-        int win_len = 0; // At least one element can always be kept
+        int win_len = 1; // At least one element can always be kept
         int l = 0;
         for (int r = 0; r < n; r++) {
             // Shrink window from left while condition is violated
