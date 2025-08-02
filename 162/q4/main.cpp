@@ -18,6 +18,27 @@ public:
     vector<int> subarrayMajority(vector<int>& nums,
                                  vector<vector<int>>& queries) {
 
+        int n = nums.size();
+
+        unordered_map<int, int> hm;
+        vector<pair<int, int>> max_count(n);
+        pair<int, int> prev_hi = { INT_MAX, 0 };
+        for (int i = 0; i < n; i++) {
+            hm[nums[i]]++;
+            pair<int, int> curr = { nums[i], hm[nums[i]] };
+            if (curr.second > prev_hi.second) {
+                max_count[i] = curr;
+                prev_hi = curr;
+            } else if (curr.second == prev_hi.second &&
+                       curr.first < prev_hi.first) {
+                max_count[i] = curr;
+                prev_hi = curr;
+            }
+        }
+
+        for (auto q : queries) {
+        }
+
         return {};
     }
 };
