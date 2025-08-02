@@ -2,6 +2,7 @@
 // https://leetcode.com/contest/biweekly-contest-162/problems/earliest-finish-time-for-land-and-water-rides-ii/
 
 #include <bits/stdc++.h>
+#include <climits>
 using namespace std;
 
 // shorter type names
@@ -21,40 +22,41 @@ public:
                            vector<int>& waterStartTime,
                            vector<int>& waterDuration) {
 
-        // case1: land then water
-        // case1: water then land
-        int n;
-        // earliest to finish A, B
-        n = landDuration.size();
-        int eA = INT_MAX, eB = INT_MAX;
-        for (int i = 0; i < n; i++) {
-            pii curr = { landStartTime[i], landStartTime[i] + landDuration[i] };
+        // Case 1 : land then water
+        // find earliest end time
+        int earliest_land_end = INT_MAX;
+        for (int i = 0; i < landDuration.size(); i++)
+            earliest_land_end =
+                min(earliest_land_end, landStartTime[i] + landDuration[i]);
+        int case1_res = INT_MAX;
+        for (int i = 0; i < waterDuration.size(); i++) {
+            int val;
+            if (waterStartTime[i] > earliest_land_end) {
+                val = waterStartTime[i] + waterDuration[i];
+            } else {
+                val = earliest_land_end + waterDuration[i];
+            }
+            case1_res = min(case1_res, val);
         }
 
-        // earliest to finish A, B
-        int ea;
-        pii target;
-        target = { waterStartTime[0], waterStartTime[0] + waterDuration[0] };
-        for (int i = 0; i < n; i++) {
-            pii curr = { landStartTime[i], landStartTime[i] + landDuration[i] };
-            ea = curr.second;
-            if (curr.second <= target.first || curr.first >= target.second)
-                break;
+        // Case 2 : water then land
+        // find earliest end time
+        int earliest_water_end = INT_MAX;
+        for (int i = 0; i < waterDuration.size(); i++)
+            earliest_water_end =
+                min(earliest_water_end, waterStartTime[i] + waterDuration[i]);
+        int case2_res = INT_MAX;
+        for (int i = 0; i < landDuration.size(); i++) {
+            int val;
+            if (landStartTime[i] > earliest_water_end) {
+                val = landStartTime[i] + landDuration[i];
+            } else {
+                val = earliest_water_end + landDuration[i];
+            }
+            case1_res = min(case1_res, val);
         }
-        cout << "ea: " << ea << endl;
 
-        // earliest to finish b
-        int eb;
-        target = { landStartTime[0], landStartTime[0] + landDuration[0] };
-        for (int i = 0; i < n; i++) {
-            pii curr = { waterStartTime[i],
-                         waterStartTime[i] + waterDuration[i] };
-            eb = curr.second;
-            if (curr.second <= target.first || curr.first >= target.second)
-                break;
-        }
-        cout << "eb: " << eb << endl;
-        return max(ea, eb);
+        return min(case1_res, case2_res);
     }
 };
 
