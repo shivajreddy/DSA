@@ -1,3 +1,6 @@
+// Q2. Minimum Removals to Balance Array
+// https://leetcode.com/contest/biweekly-contest-162/problems/minimum-removals-to-balance-array/
+
 #include <bits/stdc++.h>
 using namespace std;
 
