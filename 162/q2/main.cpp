@@ -19,6 +19,32 @@ public:
 
         sort(nums.begin(), nums.end());
 
+        function<bool(int, int)> is_valid = [&](int l, int r) -> bool {
+            return (long long)nums[l] * k >= (long long)nums[r];
+        };
+
+        int win_len = 0; // At least one element can always be kept
+
+        // Two-pointer approach to find longest valid subarray
+        int l = 0;
+        for (int r = 0; r < n; r++) {
+            // Shrink window from left while condition is violated
+            while (!is_valid(l, r)) l++;
+            win_len = max(win_len, r - l + 1); // Update max-len of valid subarr
+        }
+
+        return n - win_len;
+    }
+};
+
+class SolutionMain {
+public:
+    int minRemoval(vector<int>& nums, int k) {
+        int n = nums.size();
+        if (n == 1) return 0;
+
+        sort(nums.begin(), nums.end());
+
         int maxLen = 1; // At least one element can always be kept
         int left = 0;
 
@@ -33,36 +59,6 @@ public:
         }
 
         return n - maxLen;
-    }
-};
-
-class Solution2 {
-public:
-    int minRemoval(vector<int>& nums, int k) {
-
-        int n = nums.size();
-        if (n == 1) return 0;
-
-        sort(nums.begin(), nums.end());
-
-        struct pair_hash {
-            size_t operator()(const pair<int, int>& p) const {
-                return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
-            }
-        };
-        unordered_map<pair<int, int>, int, pair_hash> hm;
-
-        function<int(int, int)> rec = [&](int l, int r) -> int {
-            if (l == r) return nums.size() - 1;
-            if ((long long)nums[r] <= (long long)nums[l] * k)
-                return n - (r - l + 1);
-            if (hm.find({ l, r }) != hm.end()) return hm[{ l, r }];
-            int L = rec(l + 1, r);
-            int R = rec(l, r - 1);
-            return hm[{ l, r }] = min(L, R);
-        };
-
-        return rec(0, n - 1);
     }
 };
 
