@@ -36,16 +36,37 @@ public:
             }
         }
 
+        vector<int> res;
+
         for (auto q : queries) {
         }
 
-        return {};
+        return res;
     }
 };
 
 int main() {
     Solution* sol = new Solution();
+    vector<int> nums;
+    vector<vector<int>> queries;
+
+    auto printv = [](vector<int> v) {
+        for (int num : v) cout << num << " ";
+        cout << endl;
+    };
 
     {
+        nums = { 1, 1, 2, 2, 1, 1 };
+        queries = { { 0, 5, 4 }, { 0, 3, 3 }, { 2, 3, 2 } };
+        cout << "RESULT: ";
+        printv(sol->subarrayMajority(nums, queries));
+        cout << "EXPECTED: " << "[1,-1,2]" << endl;
+    }
+    {
+        nums = { 3, 2, 3, 2, 3, 2, 3 };
+        queries = { { 0, 6, 4 }, { 1, 5, 2 }, { 2, 4, 1 }, { 3, 3, 1 } };
+        cout << "RESULT: ";
+        printv(sol->subarrayMajority(nums, queries));
+        cout << "EXPECTED: " << "[3,2,3,2]" << endl;
     }
 }
