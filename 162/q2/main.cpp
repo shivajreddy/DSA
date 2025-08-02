@@ -19,17 +19,12 @@ public:
 
         sort(nums.begin(), nums.end());
 
-        function<bool(int, int)> is_valid = [&](int l, int r) -> bool {
-            return (long long)nums[l] * k >= (long long)nums[r];
-        };
-
-        int win_len = 0; // At least one element can always be kept
-
         // Two-pointer approach to find longest valid subarray
+        int win_len = 0; // At least one element can always be kept
         int l = 0;
         for (int r = 0; r < n; r++) {
             // Shrink window from left while condition is violated
-            while (!is_valid(l, r)) l++;
+            while ((long long)nums[l] * k < nums[r]) l++;
             win_len = max(win_len, r - l + 1); // Update max-len of valid subarr
         }
 
