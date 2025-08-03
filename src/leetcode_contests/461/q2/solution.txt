@@ -17,6 +17,8 @@ Observation:
 
     ? > ? > ? > ?
     - find all sequences that are decreasing
+     - since we want maximize the sequences, when ever we find '>', we 
+     use that as a sequence, then move on to finding the next valid sequences.
 
     any seq of same numbers of increasing nums are invalid
 
