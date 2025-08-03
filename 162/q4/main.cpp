@@ -17,6 +17,81 @@ class Solution {
 public:
     vector<int> subarrayMajority(vector<int>& nums,
                                  vector<vector<int>>& queries) {
+        int n = nums.size();
+        int q = queries.size();
+        int blockSize = max(1, (int)sqrt(n));
+
+        // Add index to queries for tracking original order
+        vector<array<int, 4>> indexedQueries(q);
+        for (int i = 0; i < q; i++) {
+            indexedQueries[i] = { queries[i][0], queries[i][1], queries[i][2],
+                                  i };
+        }
+
+        // Sort queries using Mo's algorithm ordering
+        sort(indexedQueries.begin(), indexedQueries.end(),
+             [&](const array<int, 4>& a, const array<int, 4>& b) {
+                 int blockA = a[0] / blockSize;
+                 int blockB = b[0] / blockSize;
+                 if (blockA != blockB) return blockA < blockB;
+                 // If in same block, sort by right endpoint
+                 // Alternate direction for odd/even blocks to minimize movement
+                 return (blockA & 1) ? (a[1] < b[1]) : (a[1] > b[1]);
+             });
+
+        // Process queries using Mo's algorithm
+        vector<int> result(q);
+        unordered_map<int, int> freq;
+        int currL = 0, currR = -1;
+
+        // Helper functions to add/remove elements
+        auto add = [&](int pos) { freq[nums[pos]]++; };
+
+        auto remove = [&](int pos) {
+            freq[nums[pos]]--;
+            if (freq[nums[pos]] == 0) {
+                freq.erase(nums[pos]);
+            }
+        };
+
+        // Process each query
+        for (const auto& query : indexedQueries) {
+            int l = query[0];
+            int r = query[1];
+            int threshold = query[2];
+            int queryIdx = query[3];
+
+            // Expand/shrink window to match current query
+            while (currR < r) add(++currR);
+            while (currL > l) add(--currL);
+            while (currR > r) remove(currR--);
+            while (currL < l) remove(currL++);
+
+            // Find best element that meets threshold
+            int bestElement = -1;
+            int bestFreq = -1;
+
+            for (const auto& [element, count] : freq) {
+                if (count >= threshold) {
+                    if (bestFreq == -1 || count > bestFreq ||
+                        (count == bestFreq && element < bestElement)) {
+                        bestElement = element;
+                        bestFreq = count;
+                    }
+                }
+            }
+
+            result[queryIdx] = bestElement;
+        }
+
+        return result;
+    }
+};
+
+class SolutionBruteforce {
+public:
+    vector<int> subarrayMajority(vector<int>& nums,
+                                 vector<vector<int>>& queries) {
         vector<int> result;
 
         for (const auto& query : queries) {
