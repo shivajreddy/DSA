@@ -1,0 +1,23 @@
+
+    0   1   2   3   4
+    2   5   1   4   3
+    ---------   -----
+
+Observation:
+    - min size of sequence is 2
+    last < max
+    - greedy: stop when seq is valid, to get max no. of valid sequences
+             - not valid => means last is the max, 
+             so set this as the start of next possible seq.
+
+    4   4
+
+
+    1 < 2 < 3 < 4 = 4
+
+    ? > ? > ? > ?
+    - find all sequences that are decreasing
+
+    any seq of same numbers of increasing nums are invalid
+
+
