@@ -17,6 +17,43 @@ class Solution {
 public:
     vector<int> subarrayMajority(vector<int>& nums,
                                  vector<vector<int>>& queries) {
+        vector<int> result;
+
+        for (const auto& query : queries) {
+            int l = query[0], r = query[1], threshold = query[2];
+
+            // Count frequencies in the subarray
+            unordered_map<int, int> freq;
+            for (int i = l; i <= r; i++) freq[nums[i]]++;
+
+            // Find the element with highest frequency that meets the threshold
+            int best_element = -1, best_freq = -1;
+
+            for (const auto& [element, count] : freq) {
+                if (count >= threshold) {
+                    // Update if we find a better candidate:
+                    // - First time finding a valid element
+                    // - Higher frequency than current best
+                    // - Same frequency but smaller element value
+                    if (best_freq == -1 || count > best_freq ||
+                        (count == best_freq && element < best_element)) {
+                        best_element = element;
+                        best_freq = count;
+                    }
+                }
+            }
+
+            result.push_back(best_element);
+        }
+
+        return result;
+    }
+};
+
+class Solution2 {
+public:
+    vector<int> subarrayMajority(vector<int>& nums,
+                                 vector<vector<int>>& queries) {
 
         int n = nums.size();
 
