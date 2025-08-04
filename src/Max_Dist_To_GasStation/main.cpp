@@ -7,43 +7,89 @@ using namespace std;
 class Solution {
 public:
     double findSmallestMaxDist(vector<int>& stations, int k) {
-        // Code here
+
         int n = stations.size();
 
-        // 3  6  12  19  33  44  67  72  89  95
-        for (int i = 1; i < n; i++) {
-            int d = stations[i] - stations[i - 1];
-            stations[i - 1] = d;
-        }
-        // 3  6   7  14  11  23  5   17  6  [95] <- we just ignore the last num
+        double lo = 0.0, hi = stations[n - 1] - stations[0];
 
-        while (k) {
-            // find the best spot to place, which is the largest dist
-            int largest = -1, largest_idx = -1;
-            for (int i = 0; i < n - 1; i++) {
-                if (largest < stations[i]) {
-                    largest = stations[i];
-                    largest_idx = i;
-                }
+        auto possible = [&](double d, vector<int>& arr) {
+            int n = arr.size();
+            int used = 0;
+            for (int i = 1; i < n; i++) {
+                // used += (int)((arr[i] - arr[i - 1]) / d);
+                used += ceil((arr[i] - arr[i - 1]) / d) - 1;
             }
-            stations[largest_idx] = stations[largest_idx] / 2;
-            k--;
+            return used <= k;
+        };
+
+        // Increase precision - use 1e-9 instead of 1e-6
+        while (hi - lo >= 1e-9) {
+            double mid = (lo + hi) / 2.0;
+            if (possible(mid, stations))
+                hi = mid;
+            else
+                lo = mid;
         }
 
-        int total_dist = 0;
-        for (int i = 0; i < n - 1; i++) {
-            total_dist += stations[i];
+        // Round to 2 decimal places
+        // return lo;
+        // return round(lo * 100.0) / 100.0;
+        // return hi;
+        return round(hi * 100.0) / 100.0; // Try returning hi instead of lo
+    }
+};
+
+class SolutionAlternative {
+public:
+    double findSmallestMaxDist(vector<int>& stations, int k) {
+        int n = stations.size();
+        double lo = 0.0, hi = stations[n - 1] - stations[0];
+
+        auto possible = [&](double d, vector<int>& arr) {
+            int n = arr.size();
+            int used = 0;
+            for (int i = 1; i < n; i++) {
+                used += ceil((arr[i] - arr[i - 1]) / d) - 1;
+            }
+            return used <= k;
+        };
+
+        // Run fixed number of iterations for better precision
+        for (int i = 0; i < 100; i++) {
+            double mid = (lo + hi) / 2.0;
+            if (possible(mid, stations))
+                hi = mid;
+            else
+                lo = mid;
         }
 
-        return 0.0;
+        return round(hi * 100.0) / 100.0;
     }
 };
 
 int main() {
     Solution* sol = new Solution();
+
+    // /*
+    int tc;
+    cin >> tc;
+    while (tc--) {
+
+        int n;
+        cin >> n;
+        vector<int> stations(n);
+        for (int i = 0; i < n; i++) cin >> stations[i];
+        int k;
+        cin >> k;
+
+        // cout << "EXPECTED: " << 1.73 << endl;
+        cout << "RECEIVED: " << sol->findSmallestMaxDist(stations, k) << endl;
+    }
+    // */
+
+    /*
     vector<int> stations;
     int k;
-
     {
         stations = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         k = 9;
@@ -53,10 +99,11 @@ int main() {
 
     {
         stations = { 3, 6, 12, 19, 33, 44, 67, 72, 89, 95 };
-        k = 10;
+        k = 2;
         cout << "EXPECTED: " << 14.00 << endl;
         cout << "RECEIVED: " << sol->findSmallestMaxDist(stations, k) << endl;
     }
+    // */
 
     delete sol;
 }

@@ -4,6 +4,7 @@ k=9
 
 
 k=10
+
 3  6  12  19  33  44  67  72  89  95
   3  6   7  14  11  23  5   17  6
 
@@ -14,8 +15,6 @@ OBSERVATIONS:
     -> odd => new_d = d/2
     -> evn => new_d = d/2
 - always pick the highest dist, then update distance
-
-
 
 
 
