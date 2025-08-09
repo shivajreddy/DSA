@@ -36,7 +36,7 @@ void solve() {
     vector<vector<pii>> parent(rows, vector<pii>(cols, { -1, -1 }));
 
     q.push(start);
-    map[start.ff][start.ss] = '#'; // Mark visited WHEN pushing!
+    map[start.ff][start.ss] = '#'; // Mark visited IMMEDIATELY after pushing
 
     typedef vector<tuple<int, int, string>> vt;
     vt dirs = { { -1, 0, "U" }, { 1, 0, "D" }, { 0, -1, "L" }, { 0, 1, "R" } };
@@ -53,7 +53,7 @@ void solve() {
             if (map[nr][nc] == '#') continue;
 
             q.push({ nr, nc });
-            map[nr][nc] = '#'; // Mark visited IMMEDIATELY
+            map[nr][nc] = '#'; // Mark visited IMMEDIATELY after pushing
 
             parent[nr][nc] = { r, c };
 
