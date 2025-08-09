@@ -13,7 +13,41 @@ typedef pair<int, int> pii;
 #define PB push_back
 #define loop(i, a, b) for (int i = a; i < b; i++)
 
+// assuming that input is mutable, without using extra space
 void solve() {
+    int rows, cols;
+    cin >> rows >> cols;
+
+    vector<string> map(rows);
+    loop(r, 0, rows) cin >> map[r];
+
+    vector<pii> dirs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+
+    function<void(int r, int c)> dfs = [&](int r, int c) {
+        map[r][c] = '#'; // mark as visited by changing this to wall
+
+        // explore all 4 directions
+        for (auto d : dirs) {
+            int nr = r + d.first, nc = c + d.second;
+            // out of bounds
+            if (nr < 0 || nr == rows || nc < 0 || nc == cols) continue;
+            // wall (or already visited)
+            if (map[nr][nc] == '#') continue;
+            dfs(nr, nc);
+        }
+    };
+
+    int rooms = 0;
+    loop(r, 0, rows) loop(c, 0, cols) {
+        if (map[r][c] == '#') continue;
+        dfs(r, c);
+        rooms++;
+    }
+    cout << rooms << endl;
+}
+
+// using set, assuming that the input is immutable
+void solve2() {
     int rows, cols;
     cin >> rows >> cols;
 
@@ -30,7 +64,6 @@ void solve() {
             return a.first == b.first && a.second == b.second;
         }
     };
-
     unordered_set<pii, pair_hash, pair_equal> visited;
 
     vector<pii> dirs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
