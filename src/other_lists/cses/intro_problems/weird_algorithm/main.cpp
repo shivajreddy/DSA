@@ -1,3 +1,6 @@
+// Weird Algorithm
+// https://cses.fi/problemset/task/1068
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,7 +12,7 @@ typedef vector<int> vi;
 #define PB push_back
 #define loop(i, a, b) for (int i = a; i < b; i++)
 
-int main() {
+void solve() {
     ll n;
     cin >> n;
 
@@ -21,4 +24,17 @@ int main() {
             n = n * 3 + 1;
     }
     cout << 1 << endl;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+#endif
+
+    solve();
+    // int tc;
+    // cin >> tc;
+    // while (tc--) solve();
 }
