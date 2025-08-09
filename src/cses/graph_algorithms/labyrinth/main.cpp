@@ -38,17 +38,16 @@ void solve() {
     q.push(start);
     map[start.ff][start.ss] = '#'; // Mark visited WHEN pushing!
 
-    int dr[] = { -1, 1, 0, 0 };
-    int dc[] = { 0, 0, -1, 1 };
-    char dir_char[] = { 'U', 'D', 'L', 'R' };
+    typedef vector<tuple<int, int, string>> vt;
+    vt dirs = { { -1, 0, "U" }, { 1, 0, "D" }, { 0, -1, "L" }, { 0, 1, "R" } };
 
     bool found = false;
     while (!q.empty() && !found) {
         auto [r, c] = q.front();
         q.pop();
 
-        loop(i, 0, 4) {
-            int nr = r + dr[i], nc = c + dc[i];
+        for (auto [dr, dc, sym] : dirs) {
+            int nr = r + dr, nc = c + dc;
 
             if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue;
             if (map[nr][nc] == '#') continue;
@@ -58,6 +57,10 @@ void solve() {
 
             parent[nr][nc] = { r, c };
 
+            if (map[nr][nc] == 'B') {
+                found = true;
+                break;
+            }
             if (nr == end.ff && nc == end.ss) {
                 found = true;
                 break;
