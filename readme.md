@@ -4,10 +4,11 @@ This Repo is for everything Data Structures & Algorithms
 
 ## Directory Structure
 ```
- - src                -> Source folder of the repo  
-   > LearningMaterial -> Everything from theory,tests,notes to get good at DSA  
-   > leetcode         -> LeetCode solutions (Language specific)  
-   > Misc             -> Other things that I haven't organized yet.  
+ - src                      -> Source folder of the repo  
+   > codeforces             -> codeforces solutions (Language specific)  
+   > leetcode               -> LeetCode solutions (Language specific)   
+   > misc                   -> random problems from the internet  
+   > misc/Learning Material -> all theory, tests, notes to get good at DSA.  
 ```
 
 ## How to Run/write solutions in Python
