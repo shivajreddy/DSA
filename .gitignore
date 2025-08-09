@@ -7,3 +7,7 @@ DSA.iml
 **/venv/**
 
 
+**/.clang-format
+# Ignore all output files
+**/out
+
