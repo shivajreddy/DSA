@@ -1,0 +1,29 @@
+total_sum = sum(a)
+target_sum = total_sum - 1
+
+if sum(seq) == target_sum => +1
+
+LIMITS:
+- so can do n^2 operations, but CANT do 2^n operations
+- there are 2^n sequences
+
+OBSERVATION:
+- when target = 0, count 1 for empty sequence
+- WRONG:: use hashmap to store all previous sequence counts
+  for example if a sequnce of sum of 10 occurs 2 times, then 
+  hm = {10 : 2}
+- KEY OBSERVATION: only 1 and 0 matter, since the sum of sequence
+  is off by 1.
+  result will be: no.of.1's * 2^(no.of 0's)
+
+2^(no.of 0's) because, this the number of sequences with the 
+target_sum that we can form by removing the 0's
+
+
+
+0 1 1 2 3
+
+0 1 2 4 7
+
+if prev - curr = target => ans += hm[prev]
+

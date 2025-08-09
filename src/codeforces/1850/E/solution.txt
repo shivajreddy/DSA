@@ -1,0 +1,52 @@
+50
+3 2 1
+
+min area: w=1 w=?
+for w=1, it adds  (s+(w*2))^2
+    (a+b)^2 = a^2 + b^2 + 2ab
+
+S = a1^2 + a2^2 + ...
+S + n(b^2) + 2nb(a1 + a2 + a3 + ... + an) = c
+S + n.b^2 + 2nb.total_sum = c
+n.b^2 + 2nb.total_sum = c - S 
+b^2 + 2b.total_sum = (c - S)  / n
+
+100
+6
+
+500
+2 2 2 2 2
+
+365
+3 4
+
+OBSERVATION:
+- min-w = 1
+- say sides of squares are s1, s2, s3 ... sn
+  - new length of square is (s1+2w), (s2+2w), (s3+2w) ... (sn+2w)
+  - the sum of squares is (s1+2w)^2, (s2+2w)^2, (s3+2w)^2 ... (sn+2w)^2
+  - we are given that (s1+2w)^2, (s2+2w)^2, (s3+2w)^2 ... (sn+2w)^2 = c
+  - and range of c is [1, 10^18]
+  - for finding max w, assume we just have 1 square, and since w will be squared
+    after squaring it should be equal to 10^18, so max w can be is 10^9
+  - so w is in range[1, 10^9]
+
+
+469077255466389
+10000 2023
+
+635472106413848880
+9181 4243 7777 1859 2017 4397 14 9390 2245 7225
+
+176345687772781240
+9202 9407 9229 6257 7743 5738 7966
+
+865563946464579627
+3654 5483 1657 7571 1639 9815 122 9468 3079 2666 5498 4540 7861 5384
+
+977162053008871403
+9169 9520 9209 9013 9300 9843 9933 9454 9960 9167 9964 9701 9251 9404 9462 9277 9661 9164 9161
+
+886531871815571953
+2609 10 5098 9591 949 8485 6385 4586 1064 5412 6564 8460 2245 6552 5089 8353 3803 3764
+

@@ -1,0 +1,21 @@
+
+n = 5
+
+
+new_range_sum = k*(r-l+1)
+
+left = PS[l-1]
+right = PS[-1] - PS[r]
+new_total_sum = left + right + new_range_sum
+
+2 4 5 8 10  prefix-sum
+2 2 1 3 2
+  3 3       TS=13
+
+
+q = 5
+2 3 3   l, r, k
+2 3 4
+1 5 5
+1 4 9
+2 4 3

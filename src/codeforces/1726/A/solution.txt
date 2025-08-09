@@ -1,0 +1,29 @@
+
+0 1 2 3 4 5
+------------
+1 3 9 11 5 7
+-          -
+
+largest at n-1
+smallest at 0
+
+2 11 1 3 4
+
+Observations:
+- min is at 0, leave.
+- max is at n-1, leave.
+- segment must definetely include idx:0, or idx:n-1 or both
+- when a number is rotated to idx:0, it's previous number will go to idx:n-1
+  similarly, when number is rotated to idx:n-1, its next number will go to idx:0
+
+possiblities:
+- min or max or both are at 0,n-1 : return max-min
+- consider full segement:
+  - check when min is put in place
+  - check when max is put in place
+- consider only bringing min to place:
+- consider only bringing max to place:
+
+
+e: 962
+895

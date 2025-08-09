@@ -1,0 +1,37 @@
+-Question is asking: how many positions exist, such that, from 
+that position the knight can attack both the king and queen
+knight can move a-rows then b-cols, or vice verse
+- (a,b) is same as (b,a)
+
+      0 1 2 3 4 5
+    -------------
+  5 | _ _ _ _ _ _
+  4 | _ _ _ _ _ _
+  3 | _ _ _ _ _ _
+  2 | _ X _ _ _ _
+  1 | _ _ _ Q _ _
+  0 | K _ _ _ _ _
+
+  for knight that can move ab of 21, if placed on [2,1]
+  it can kill both K & Q
+
+- instead of plotting entire grid and checking every cell
+- mark all 8 points from K's place
+- mark all 8 points from Q's place
+
+K=[0,0]  (a,b)=(2,1)or(1,2)
+possible points to reach from K
+[0, 0] + [1, 2]
+[0, 0] + [1, -2]
+[0, 0] + [-1, 2]
+[0, 0] + [-1, -2]
+[0, 0] + [1, 1]
+[0, 0] + [2, -1]
+[0, 0] + [-2, 1]
+[0, 0] + [-2, -1]
+- now if any of these 8 points have a common with Q's 8 points,
+then
+- no.of common points is the no.of places a kinght can be, from
+  where the knight can attack both K & Q
+
+

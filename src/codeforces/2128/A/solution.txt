@@ -1,0 +1,61 @@
+10
+10 4 15 1 8
+
+42
+1000000000 1000000000 1000000000
+
+30
+29 25 2 12 15 42 14 6 16 9
+
+1000000
+1 1 1 1 1 1 1 1 1 864026633
+
+w > c  => cost = 1
+w <= c => cost = 0
+
+
+
+0  1 0  3 0
+0
+  0 -1  2 -1
+0
+  -2 1 -2
+1 
+-3 -3
+
+0  1 0  3 0
+10 4 15 1 8
+x  8 30 2 16  c=0
+   x 60 4 32  c=0
+      x 8 64  c=1
+        x 128 c=1
+           x  c=2
+
+OBSERVATION: if the given wt is alraedy greater than c. 
+             then no point in focusing that
+             - focus on 
+
+             val * 2^x >= c
+             2^x >= c / val
+             x >= log (c/val)
+             no.of times a number can be doubled with costing: c/val - 1
+
+20 8 xx 2 16  c=1
+
+
+c=30
+0  0  3 1  0  0  1  2 0  1 
+29 25 2 12 15 42 14 6 16 9
+
+0 0 3 1 0 0 1 2 0 1 
+9
+0
+  -1 2 0 -1 -1 0 1 -1 0
+       0
+  -2 1   -2 -2 -1 0 -2 -1
+                  0
+  -3 0    -  -  -   -   - 
+     0
+  -       -  - -   -   -
+0 -1 -6 -4 -2 -3 -5 -6 -4 -6 
+

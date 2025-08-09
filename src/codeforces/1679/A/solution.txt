@@ -1,0 +1,13 @@
+4, 6
+
+
+
+4
+n = 4a + 6b
+
+max b can be is assume a = 0, n/6
+max a can be is assume a = 0, n/4
+
+
+7 
+-1

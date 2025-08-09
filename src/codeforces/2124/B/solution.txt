@@ -1,0 +1,17 @@
+- pick i,j such that
+  j is the left most possible.
+  i is the smallest number in range[0..j-1]
+
+- we can never pick the 1st slot because
+  must : i < j
+
+if there is a 0 in the input, we search
+before that position, because after that, it will
+all be zeroes
+
+    0 1 2 3 
+    --------------
+    1 2 2 3  arr
+  X 1 1 1 1  minarr
+    1 2 3 4  minsumarr
+

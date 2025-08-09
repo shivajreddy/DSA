@@ -1,0 +1,4 @@
+
+.clang-format
+# Ignore all output files
+**/out

@@ -1,0 +1,54 @@
+
+0 1
+0 2
+10 10
+10 99
+177 13
+10000000000 987654321
+-433494437 87178291199
+1 0
+-1 1
+
+
+i : 1,2,3...
+direction:
+    x%2   x-(i+1) // +1 for time increment
+    x%3   x+(i+1)
+
+i=18
+x=7
+
+7%3  x+(18+1)
+26%2 x-(19+1)
+6%2
+
+
+                                 n       
+i:0   1  2  3  4  5  6  7  8  9  10  11 
+x:10  9  11 14 10 5  11 18 10 1  11  22
+   -  +  +   -  - +  +  -  -  +  +   -
+
+i:0  1  2  3  4  5  6  7  8  9  10  11 
+x:3  4  2 -1  3  8  2 -5  3  12 
+  +  -  -  +  +  -  -  +  +  -
+
+OBSERVATION: i=1,2,3,4,...
+- direction doesnt just go l,r,l,r or r,l,r,l it depends on current x
+- direction goes    l, rr ll rr ll
+  or direction goes r, ll rr ll rr
+
+
+sum(n even numbers) = n.(n+1)
+sum(n odd numbers)  = n^2 
+
+       1  2  3  4  5  6
+       l  r  l  r  l  r
+x:10   9 11 
+
+   1 2 3 4 5 6
+   r l r l r l
+
+10 9 11
+
+
+            

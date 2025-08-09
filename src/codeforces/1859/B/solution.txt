@@ -1,0 +1,103 @@
+5 7 20 30
+6 8 11
+2 9
+tot=13, res=19
+
+5 7 20 30
+6 8 11
+2 9
+
+
+- keep track of the largest of all the 1nd position nums
+- keep track of the largest of all the 2nd position nums
+[6 9]
+
+
+2 4
+10 10 20
+
+1 2     2
+3 4     1 3 4       if a0+b0 < a1+a0 then move a0 to b
+1 20    20
+3 4     1 3 4   
+
+
+OBSERVATIOIN: since we must pick min num from each array.
+- the smallest number of all arrays will always be counted
+- since we can only remove 1 num from the each array, the best way to 
+  maximize result is to get rid of the smallest number
+  - so to maximize results of each array, pick the smallest number in every
+    array, and put all those in another array.
+
+
+- just imagine if all these individual arrays are sorted, we dont have solving
+this is easier to visualize
+
+arary 1 : O T O O O ...
+arary 3 : O Ts O O O ...    <-Ts is the smallest of all the T's
+arary 2 : O T O O O ...
+arary 4 : S T O O O ...   <- say this arr holds the smallest number(S) of all
+...
+arary 2 : O T O O O ...
+
+here O means we dont care, T means the Target number that would end up
+bein in the front.
+now we sum all these T's(call this total), because they will end up on the front,
+and all the front numbers which are currently the smallest number in each array,
+will go to the array that is having the smallest number of all(as our 
+1st observtion this smallest number among all the arrays will always be counted).
+Now all the beginning numbers will come to the array that is holding the 
+smallest number, we dont care where these numbers would end up, because we know 
+for a fact that only number that we care is the smallest, and this arrays smallest 
+is the smallest across all arrays. So from this array, we remove the T, which 
+is the second smallest that was counted towards our total.
+
+total = sum(all T's)
+res = total + S - Ts
+
+1 3
+1 2
+1 3
+1 3
+1 3
+total=33332 + 1 - 2
+S=1
+Ts=2
+
+you would put all the min-numbers into the array holding the 2nd smallest
+3
+1 1 1 1 1 2
+3
+3
+3
+
+
+
+3 4
+1 2
+3 4
+
+3 2
+1 5
+3 4
+cf=11+1-2=10  sh=11+1-5=7
+
+5 7 1001 1007
+6 8 11
+2 9
+cf=24+2-7=19
+sh=24+2-9=17
+
+
+2 6 5 7 1001 1007
+8 11
+9
+
+
+5 7 1001 1007
+6 8 11
+2 9
+
+total=19
+
+

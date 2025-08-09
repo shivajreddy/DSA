@@ -1,0 +1,20 @@
+Observations:
+- if p,q are same point, then sum of all abs distances
+between each point should equal 0
+
+p=[3,3] q=[3,3] stops=4,5,1
+
+- imagine drawing a circle with the current stop distance,
+ starting from p.
+ - at each stage we are choosing a point on this circle,
+   and drawing another from that point as center, with next
+   distance as the radius, eventually the last circle if 
+   can be drawn such that at, q is one of the point on its 
+   circumfarance, then yes, or else no
+
+ - but this is exponentiall, because there are infinite points 
+   on the circle's circumfarance.
+
+- when we have two circles, we can find the intersection points 
+  -but, we have multiple steps
+  a -> s1 -> s2 <-> sk <- b

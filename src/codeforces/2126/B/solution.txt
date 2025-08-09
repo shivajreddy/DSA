@@ -1,0 +1,43 @@
+
+_____   _____
+0 0 0 0 0 0 0
+
+k=1
+1 1 1
+
+sum(a) = n => all are 1's return 0
+sum(a) = 0 => all are 0's return ??? must give 1 gap
+
+k=2
+0101
+
+k=2
+001000
+
+k=2
+0000000  t=7
+-- -- -
+
+imagine idx:-1 is a 1, this will make a valid segment be 1000 for k=3 or 0000
+basically iterate from idx:0, after a valid segment, leave 1 cell
+10000000  t=7
+
+recursively find
+res(idx):
+-> check if remaining lengh is >= k, if not return 0
+-> check if all in [idx..idx+k] are 0
+    yes => return 1+res(idx+k+1) 
+    no =>  return 0+res(idx+k+1)
+
+loop(i, 0, n) res = max(res, rec(i));
+
+
+k=1
+0 1 0 0 0
+
+k=2
+10100
+
+_______
+
+How many k-sized segments are there?

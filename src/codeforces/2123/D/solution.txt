@@ -1,0 +1,18 @@
+
+0 1 2 3 4     n=5, k=2
+1 1 0 1 1
+0 1 0 0 1  alice chose 0,3
+0 1 1 1 1  bob chose 2,3
+0 1 0 1 0  alice chose 2,4
+1 1 0 1 0
+0 1 0 0 0
+0 1 1 1 0
+0 1 0 1 0
+1 1 0 1 0
+1 0 0 0 0
+
+- alice's subsequnce is powerful, cuz you can also have substring
+- if any game state repeats, then bob wins
+
+
+

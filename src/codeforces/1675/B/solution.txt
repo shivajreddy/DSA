@@ -1,0 +1,31 @@
+
+3 6 5
+1 3
+
+to convert the number
+
+2 8 7 5
+    4
+
+OBSERVATION:
+can only divide
+- so dont divide last
+
+21 7    21 10 5 2 1 0
+20 7    20 10 5 2 1 0    next-2
+
+21 8    21 10 5 2 1 0
+20 8    21 10 5 2 1 0   next-3
+
+8 8     8 4 2 1 0   next-4
+7 7     7 3 2 1 0   next-7
+
+1000000000
+8 26 5 21 10
+
+- to keep reducing a num by dividing by 2 it runs for log(num)
+- there are only 30 nums in array, each number is 2*10^9
+- to total time: 30 * log(2*10^9)
+
+
+

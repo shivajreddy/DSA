@@ -1,0 +1,9 @@
+
+x=6  y=6
+x=96 y=6
+x=78 y=7
+122  y=1
+696  y=6
+
+get all digits return 1st smallest digit
+

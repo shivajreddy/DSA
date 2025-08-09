@@ -1,0 +1,16 @@
+
+mex(arr) = smallest non neg int that is not in arr
+
+0 1 2 3 4
+  l     r
+
+0 2 3 0 1 2 0
+
+no. of non-0 sub-arrays
+
+0 2 0 2 0
+
+obs: if 0 is included in the array, then it we can never 
+ pick 0 as the least number not in the array.
+
+2 0 2 0 2

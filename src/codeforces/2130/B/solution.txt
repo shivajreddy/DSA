@@ -1,0 +1,47 @@
+
+min dist = sum(a), alice will touch all nums
+max dist = s (if there is 0,1 next to each other, alice can keep hopping on those)
+
+rearraning will only help increasing the total_sum, but can never reduce it
+
+s=2
+0 1 2
+can not skip 0+1+2
+
+s=3
+0 1 2
+-1 alice will just walk straight
+
+s=6
+0 1 2
+
+s=4
+0 1 2     
+0 2 1
+2,4,6,8
+
+(0 1) 1,2,3,4... placing these two next to each other, can form any val
+(0 2) 2,4,6,8...
+(1, 2) 3,5,7,9
+(2, 1) 3,6,9,12
+
+- for bob to win, alice can never have 0,1 next to each other.
+  use 2's  to separate 0&1. if there are 0 2's alice wins
+always put all 0's in front
+- bob now has to working with no.of 1's and no.of 2's
+we only care about last 3 steps
+
+s=10
+0 1 2
+(0.... 1.... 2...) (1, 2)
+remaining (1 2)   new_target_s = s-remaining, remaining=sumof1's-1 + sumof2's-2
+remaining (2 1)
+
+if we have 0 1's, and s=odd, bob wins
+if we have 0 2's
+x+y*2 = target
+
+
+s=1000
+2 0 1 1 2
+

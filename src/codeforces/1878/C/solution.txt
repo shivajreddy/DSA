@@ -1,0 +1,24 @@
+n: max element he can choose
+k: no. of elements he can choose
+x: sum he has to reach
+
+n=5, k=3, x=10
+
+1 2 3 4 5
+1,4,5 = 10
+
+n=5, k=3, x=3
+
+1 2 3 4 5
+
+min-sum is the num of 1'st k numbers
+(k(k+1)) / 2
+
+10 10 55
+1 2 3 4 5 6 7 8 9 10
+
+110/2
+
+47202 32455 613407217
+
+

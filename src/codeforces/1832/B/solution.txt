@@ -1,0 +1,31 @@
+
+k=1
+2 5 1 10 6
+1 2 5 6 10
+
+k=2
+2 5 1 10 6
+1 2 5 6 10
+
+k=1
+15 22 12 10 13 11
+10 11 12 13 15 22
+
+k=2
+15 22 12 10 13 11
+10 11 12 13 15 22
+-----          --
+L              R
+
+OBSERVATION:
+- left will always move by 2
+- right will always move by 1
+-  (no.of left operations + no.of right operations) = k
+   possible ways of picking count of left & right:
+   (0, k), (1, k-1), (2, k-2) ... (k-2, 2), (k-1, 1), (k, 0)
+  - so there are k possible situations. of choosing the count of left/right
+  - if we the time for calculating result sum for x-left and y-right (where x+y=k),
+    then we can simply bruteforce and perform all k situations, since each 
+    scenario is only O(1). so total time is  O(K)
+- 
+

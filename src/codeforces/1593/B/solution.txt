@@ -1,0 +1,29 @@
+
+
+25 table is as follows
+25  50  75  100 
+125 150 175 200 
+225 250 275 300
+325 350 375 400
+x25 x50 x75 x00
+
+OBSERVATION:
+ending should always be 25 or 50 or 75 or 00
+
+x can be anything as long it is followed by (25 or 50 or 75 or 00)
+ONLY EXCEPTION IS for x00, x cant be empty, but for others it can be empty
+
+444444405
+
+50555
+5333333333330
+
+so iterate from last to front, and we try to find if current digit 
+order of checking:
+if curr=0, check if its previous exist and also a 0, and prev prev exists, l-r+1
+      if prev is not another 0, check for the nearest 5
+if curr=5, look for closest 2 or 7. remove all between 2/7 & 5. and right side
+        of 5
+if curr=anything else, skip
+    
+

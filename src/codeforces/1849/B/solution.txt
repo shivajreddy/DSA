@@ -1,0 +1,25 @@
+k=3
+
+min-heap => get max item
+
+2 8 3 5
+  ^
+OBSERVATION:
+for nums > k, example health=8,k=3
+it would be broken down as 2 3 3
+so if num > k, only insert num % k
+- by doing this when we pop top from minheap, we will always 
+  destroy it, because its health is <= k
+
+6 8 3 2
+  ^
+6 5 3 2
+^
+3 5 3 2
+  ^
+3 2 3 2
+
+res
+
+
+

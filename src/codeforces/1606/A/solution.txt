@@ -1,0 +1,9 @@
+
+abba
+abbaaa
+
+
+OBSERVATION:
+continous same char doesn't matter
+it should basically end with the same char that it started with
+

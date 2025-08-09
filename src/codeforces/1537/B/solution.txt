@@ -1,0 +1,19 @@
+
+x o o
+o o o
+
+o x o o
+o o o o
+o o o o
+- o o -
+
+OBSERVATION:
+- find the shortest path for every cell.
+  -that is the shortest path from that cell to (i,j)
+- so each location has the value of d*2, where d is the no. of edges 
+  from that cell to (i,j), *2 for going back
+  - value of cell(i,j) is 0
+- return the sum of 2 largest values
+- THE ABOVE LOGIC FAILS BECAUSE, SAY IN ABOVE GRID IF PLACE IN 
+  (4,4) AND (4,3) THEN (4,3) IS ALREADY COVERED IN (4,4)
+- 

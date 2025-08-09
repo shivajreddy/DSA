@@ -1,0 +1,23 @@
+
+2
+2
+
+1 2 3
+4 5 6
+
+1 2
+2 1
+
+1 2 2 2 2
+2 1 1 1 1
+
+2 2 1 2 2 1
+2 2 1 2 2 1
+
+2 2 1 2 2 1
+2 2 2 1 2 1
+
+OBSERVATIONS:
+- for each number get the max seq length in both arrays
+  - maintain a_map={num: max_len} b_map={num: max_len}
+- check all combinations from both hashmaps

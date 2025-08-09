@@ -1,0 +1,27 @@
+
+k = 2 or 3 or 4 or 5
+
+
+OBSERVATION:
+- a is divisible by 2, and b is divisible 2, then a*b is divisible by 2
+- we are only allowed to increase
+  - focus on largest number in the array
+
+- if any one of the number in array is divisible by k, then every number 
+is, because we want (a1 * a2 * a3 ... * an) to be divisible by k
+- if remainder is not 0, then (k-remainder) gives the number of times the current number should be increased to make it divisible by k
+
+- possible answers: 0,1,2,3,4 that is 0..k-1
+
+9 7 7 3 9  k=2
+
+7 3        k=5
+3 2
+
+7 4 1   k=3
+2 2 2
+
+9 5 1 5 9 5 1   k=4
+3 3 3 3 3 3 3
+
+

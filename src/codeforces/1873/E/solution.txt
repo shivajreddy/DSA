@@ -1,0 +1,46 @@
+LIMITS:
+n : 10^5
+x : 10^9
+cant use n.x time
+
+GOAL: maximize h
+
+h-min = 1
+h-max = ???
+
+1111  x=20
+calculate empty cols for each row, starting from bottom
+since 1 <= ai <= 10^9,
+a = 3 1 2 4 6 2 5
+row-0: empty=0
+row-1: empty = 1
+IDEA: skeep-line but vertical
+
+h=0, 7 overlaps  => w=n-overlaps = 0
+h=1, 6 overlaps  => w=7-6 = 1
+h=2, 5 overlaps  => w=7-5 = 2
+...
+h=6, 1 overlaps  => w=7-1 = 6
+
+
+3 1 2 4 6 2 5
+taken_vol       = sum(a)    tv:23
+total_water_vol = x         x:9
+
+h=1 => 0
+h=2 => min(sum(2-ai), 0)
+h=3 => min(sum(3-ai), 0)
+...
+h=k => min(sum(k-ai), 0)
+
+
+2 6 5 9 1 8
+total_fil = full_vol - taken_vol
+          = (max-height * n)  - sum(a)
+          = (9 * 6) - 31 = 23
+if x > total_fil:
+  remaining_vol = x - total_fil
+                = 1984 - 23 = 1961
+                n*k >= 1961
+        i.e., res = ceil(x/n) + max_height
+

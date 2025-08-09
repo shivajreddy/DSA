@@ -1,0 +1,11 @@
+
+gcd(x, y)
+
+
+1. a+1 & b+1
+2. a-1 & b-1    only if a>0 b>0
+
+maximize gcd
+8, 5    1
+
+9 6   7 4

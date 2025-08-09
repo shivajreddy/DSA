@@ -1,0 +1,16 @@
+
+x=3
+3    6    9
+1,0  2,0  3,0
+
+x=3
+6 4 11
+4    6    11
+1,1  2,0  3,2
+
+/x  
+
+- for max, never combine anything, since we want non-0 remainders
+to not get added to others0
+- for numnbers with remainder 0, nothing to do
+- for min, 

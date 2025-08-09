@@ -1,0 +1,32 @@
+1 is neither odd nor even
+- 1..n odd
+- 2..n even
+
+k ?
+
+n=10, k=3
+1 2 3 4 5 6 7 8 9 10
+
+1 3 5 7 9
+2 4 6 8 10
+
+- n is always either odd or even
+if n is even then left-half and right-half have equal numbers
+
+- if n is odd, then the left-half(odd number sequence) will have 
+that extra number
+
+- n is odd:
+  left will have  n//2+1 numbers
+  right will have n//2   numbers
+
+- n is even:
+  left will have  n//2 numbers
+  right will have n//2 numbers
+
+now find if k'th number in the sequnce is in left or right sequence
+
+if k is in left half, then find the kth number in the sequence 1,3,5,7...
+
+if k is in right half, convert k to as if it is counting from the start of
+    right half, i.e., k = k - 

@@ -1,0 +1,32 @@
+delete : 1
+swap : 0
+
+011  
+
+max_len of t = len(s)
+
+0101110001  0:5 1:5
+1010001110
+
+111100
+000011
+
+OBSERVATION:
+all zeroes: cost = n
+all ones: cost = n
+- try do minimum deletions, start at 0
+- t is checked from start of s.
+  all swappable digits are pushed to left.
+   : same count of 1's & 0's are pushed to front
+
+111100
+00____
+
+011
+10_
+
+0
+_
+
+111100
+00____

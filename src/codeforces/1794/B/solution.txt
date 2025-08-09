@@ -1,0 +1,44 @@
+2 4 3 6
+4 5 6 7
+
+- each operation is only adding 1
+- at max for each number we can add 2
+
+KEY OBSERVATION: take A B, our goal is B % A != 0
+  but if B % A == 0, then we can B++ or A++, 
+  we should B++ because take if A B are 2 24
+  if increased 2 to 3 or even 4(which is 3 operations)
+  but not just because it has 3 operations which is more 
+  than allowed operations, we can actually achieve 
+  B % A != 0, by increasing B by 1, instead of keep on 
+  increasing A until B % A != 0.
+  TLDR: for remainder != 0, increase numerator by 1.
+
+- So we can iterate from idx[1..n-1], if curr is divisible
+  by previous, then increase the current(numerator) by 1.
+
+  NOTE: this logic only fails when your previous number
+  i.e., the denominator is 1. that is if your denominator
+  is 1, then increasing numberator has no effect
+  - so do a 1st pass by converting all 1's to 2.
+
+
+a b, where b % a != 0
+max num to add to every number is 2, 
+
+3 4 3 7
+
+2 4 3 6
+  5 4
+
+1 1 2 1
+
+1 2 1 2 1 2 1 2
+3   3   3   3  
+
+1 2 3
+2 3 5
+3 2 3
+
+2n -> every number can be changed twice
+1 1 1 1 1
