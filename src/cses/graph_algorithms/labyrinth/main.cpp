@@ -16,6 +16,79 @@ typedef pair<ll, ll> pll;
 #define ff first
 #define ss second
 
+void solve_practise() {
+    int rows, cols;
+    cin >> rows >> cols;
+    vector<string> map(rows);
+    loop(r, 0, rows) cin >> map[r];
+
+    pii start, end;
+    loop(r, 0, rows) loop(c, 0, cols) {
+        if (map[r][c] == 'A') {
+            start = { r, c };
+        } else if (map[r][c] == 'B') {
+            end = { r, c };
+        }
+    }
+
+    queue<tuple<int, int>> q;
+
+    q.push(start); // push and mark as visited
+    map[start.ff][start.ss] = '#';
+
+    vector<vector<pii>> parents(rows, vector<pii>(cols, { -1, -1 }));
+
+    vector<pii> dirs = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+
+    bool found = false;
+    while (!q.empty() && !found) {
+        auto [r, c] = q.front();
+        q.pop();
+
+        for (auto [dr, dc] : dirs) {
+            int nr = r + dr, nc = c + dc;
+            if (nr < 0 || nr == rows || nc < 0 || nc == cols) continue;
+            if (map[nr][nc] == '#') continue;
+
+            parents[nr][nc] = { r, c }; // store {nr,nc}'s parent as {r,c}
+
+            // before marking as visited, check if this is the destination
+            if (map[nr][nc] == 'B') {
+                found = true;
+                break;
+            }
+
+            q.push({ nr, nc }); // push and mark as visited
+            map[nr][nc] = '#';
+        }
+    }
+
+    if (!found) {
+        cout << "NO" << endl;
+        return;
+    }
+
+    pii curr = end;
+    string path = "";
+    while (curr != start) {
+        pii prev = parents[curr.ff][curr.ss];
+        if (prev.ff < curr.ff)
+            path += 'D';
+        else if (prev.ff > curr.ff)
+            path += 'U';
+        else if (prev.ss < curr.ss)
+            path += 'R';
+        else
+            path += 'L';
+        curr = prev;
+    }
+    reverse(path.begin(), path.end());
+
+    cout << "YES" << endl;
+    cout << path.size() << endl;
+    cout << path << endl;
+}
+
 void solve() {
     int rows, cols;
     cin >> rows >> cols;
@@ -36,7 +109,7 @@ void solve() {
     vector<vector<pii>> parent(rows, vector<pii>(cols, { -1, -1 }));
 
     q.push(start);
-    map[start.ff][start.ss] = '#'; // Mark visited IMMEDIATELY after pushing
+    map[start.ff][start.ss] = '#'; // Mark visited WHEN pushing!
 
     typedef vector<tuple<int, int, string>> vt;
     vt dirs = { { -1, 0, "U" }, { 1, 0, "D" }, { 0, -1, "L" }, { 0, 1, "R" } };
@@ -53,7 +126,7 @@ void solve() {
             if (map[nr][nc] == '#') continue;
 
             q.push({ nr, nc });
-            map[nr][nc] = '#'; // Mark visited IMMEDIATELY after pushing
+            map[nr][nc] = '#'; // Mark visited IMMEDIATELY
 
             parent[nr][nc] = { r, c };
 
@@ -149,8 +222,6 @@ int main() {
     freopen("input.txt", "r", stdin);
 #endif
 
-    solve();
-    // int tc;
-    // cin >> tc;
-    // while (tc--) solve();
+    // solve();
+    solve_practise();
 }
